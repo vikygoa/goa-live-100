@@ -2,6 +2,7 @@ import os
 import json
 import time
 import re
+import html
 import requests
 import feedparser
 from datetime import datetime, timedelta
@@ -15,16 +16,25 @@ NEWS_LIMIT_PER_RUN = 100
 STATE_FILE = "news_data.json"
 
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY")
-FALLBACK_GOA_IMG = "https://images.pexels.com/photos/15160867/pexels-photo-15160867.jpeg?auto=compress&w=600"
+FALLBACK_GOA_IMG = "https://images.pexels.com/photos/4428289/pexels-photo-4428289.jpeg?auto=compress&cs=tinysrgb&w=600"
 
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 FEEDS = [
     "https://news.google.com/rss/search?q=Goa+news&hl=en-IN&gl=IN&ceid=IN:en",
-    "https://news.google.com/rss/search?q=Goa+Panaji+OR+Margao+OR+Mapusa+OR+Vasco&hl=en-IN&gl=IN&ceid=IN:en",
-    "https://news.google.com/rss/search?q=Goa+sports+OR+Goa+football&hl=en-IN&gl=IN&ceid=IN:en",
+    "https://news.google.com/rss/search?q=Goa+local+OR+Panaji+OR+Margao+OR+Mapusa&hl=en-IN&gl=IN&ceid=IN:en",
+    "https://news.google.com/rss/search?q=Goa+sports+OR+football&hl=en-IN&gl=IN&ceid=IN:en",
     "https://digitalgoa.com/feed/"
 ]
+
+def clean_html_text(raw_html):
+    """Strip HTML tags, links, and publisher tags completely."""
+    if not raw_html:
+        return ""
+    clean = re.sub(r'<[^>]+>', ' ', raw_html)
+    clean = html.unescape(clean)
+    clean = re.sub(r'\s+', ' ', clean).strip()
+    return clean
 
 # ==========================================
 # 1. RETENTION & STATE MANAGEMENT
@@ -32,7 +42,7 @@ FEEDS = [
 def manage_retention_and_state():
     threshold_date = datetime.utcnow() - timedelta(days=RETENTION_DAYS)
     recent_news = []
-    seen_titles = set()
+    seen_headlines = set()
 
     if os.path.exists(STATE_FILE):
         try:
@@ -43,89 +53,126 @@ def manage_retention_and_state():
                         article_date = datetime.fromisoformat(article.get('timestamp', ''))
                         if article_date > threshold_date:
                             recent_news.append(article)
-                            seen_titles.add(article.get('headline', '').strip().lower())
+                            seen_headlines.add(article.get('headline', '').strip().lower())
                     except Exception:
                         recent_news.append(article)
-                print(f"Loaded {len(historical_news)} past items. Retaining {len(recent_news)} items.")
+                print(f"Loaded {len(historical_news)} items. Retaining {len(recent_news)} within 15 days.")
         except Exception as e:
-            print(f"Could not load state, starting fresh: {e}")
+            print(f"Could not load state, creating fresh: {e}")
 
-    return recent_news, seen_titles
+    return recent_news, seen_headlines
 
 # ==========================================
-# 2. PEXELS API (PHOTO FETCHING)
+# 2. ACCURATE PEXELS PHOTO SEARCH
 # ==========================================
-def get_pexels_image(keyword):
+def get_pexels_image(keyword, category):
     if not PEXELS_API_KEY:
         return FALLBACK_GOA_IMG
 
     headers = {"Authorization": PEXELS_API_KEY}
-    clean_kw = re.sub(r'[^a-zA-Z0-9 ]', '', keyword).strip()
-    url = f"https://api.pexels.com/v1/search?query={clean_kw}&per_page=1&orientation=landscape"
     
+    # Priority 1: Search using Gemini's precise visual keyword
+    clean_kw = re.sub(r'[^a-zA-Z0-9 ]', '', keyword).strip()
+    if not clean_kw or len(clean_kw) < 3:
+        clean_kw = category
+
     try:
+        url = f"https://api.pexels.com/v1/search?query={clean_kw}&per_page=5&orientation=landscape"
         res = requests.get(url, headers=headers, timeout=6).json()
         if res.get("photos") and len(res["photos"]) > 0:
             return res["photos"][0]["src"]["medium"]
     except Exception as e:
-        print(f"Pexels fetch error for '{keyword}': {e}")
+        print(f"Pexels search failed for keyword '{clean_kw}': {e}")
+
+    # Priority 2: Fallback to broader Category keyword
+    try:
+        url = f"https://api.pexels.com/v1/search?query={category}&per_page=3&orientation=landscape"
+        res = requests.get(url, headers=headers, timeout=6).json()
+        if res.get("photos") and len(res["photos"]) > 0:
+            return res["photos"][0]["src"]["medium"]
+    except Exception:
+        pass
         
     return FALLBACK_GOA_IMG
 
 # ==========================================
-# 3. MAIN EXECUTION FLOW
+# 3. RSS COLLECTION & PRE-FILTERING
 # ==========================================
 print("--- STARTING GOA LIVE 100 UPDATER ---")
-new_news_to_display = []
+historical_feed, seen_headlines = manage_retention_and_state()
 
-historical_feed, seen_titles = manage_retention_and_state()
-
-raw_articles_to_process = []
-raw_feed_seen = set()
+raw_items = []
+seen_titles = set()
 
 for url in FEEDS:
     try:
         feed = feedparser.parse(url)
         for entry in feed.entries:
             title = entry.get("title", "").strip()
-            # Clean RSS publisher suffix if present
+            # Remove publisher suffix (e.g., "- Times of India", "- Herald Goa")
             clean_title = re.sub(r'\s*-\s*[^-]+$', '', title).strip()
-            if clean_title and clean_title.lower() not in raw_feed_seen and clean_title.lower() not in seen_titles:
-                raw_feed_seen.add(clean_title.lower())
-                raw_articles_to_process.append({
+            summary = clean_html_text(entry.get("summary", ""))
+
+            # Avoid exact title duplicates
+            if clean_title and clean_title.lower() not in seen_titles and clean_title.lower() not in seen_headlines:
+                seen_titles.add(clean_title.lower())
+                raw_items.append({
                     "title": clean_title,
-                    "summary": entry.get("summary", "")
+                    "summary": summary
                 })
     except Exception as e:
-        print(f"Error parsing feed {url}: {e}")
+        print(f"Feed error {url}: {e}")
 
-raw_articles_to_process = raw_articles_to_process[:NEWS_LIMIT_PER_RUN]
-print(f"Collected {len(raw_articles_to_process)} raw items from RSS.")
+raw_items = raw_items[:NEWS_LIMIT_PER_RUN]
+print(f"Collected {len(raw_items)} new raw items for AI processing.")
 
-# Batch AI processing in small chunks of 10
-if raw_articles_to_process:
-    batch_size = 10
-    gemini_output_all = []
+# ==========================================
+# 4. AI DEDUPLICATION, REWRITING & KEYWORDS
+# ==========================================
+new_articles_list = []
 
-    for b in range(0, len(raw_articles_to_process), batch_size):
-        batch = raw_articles_to_process[b:b+batch_size]
-        news_input_text = [f"{i+1}. Headline: {item['title']}\nDetails: {item['summary']}" for i, item in enumerate(batch)]
-        combined_prompt_text = "\n\n".join(news_input_text)
+if raw_items:
+    batch_size = 12
+    for b in range(0, len(raw_items), batch_size):
+        batch = raw_items[b:b+batch_size]
+        news_input = [f"Item {i+1}:\nTitle: {item['title']}\nDetails: {item['summary']}" for i, item in enumerate(batch)]
+        combined_text = "\n\n".join(news_input)
 
         prompt = f"""
-        Rewrite each of the following Goa news items into easy-to-read, structured 2-paragraph summaries.
-        Strictly output a JSON array of objects with keys:
-        - "headline": (string) Clear engaging headline
-        - "paragraphs": (array of 2 strings) Detailed narrative paragraphs
-        - "category": (string) Strictly one of: Tourism, Sports, Politics, Weather, Crime, Civic, Business, General
-        - "img_keyword": (string) 1 simple keyword for photo search (e.g. beach, stadium, government, police, river)
+        You are a chief news editor for a Goa local news portal.
+        Your tasks:
+        1. DEDUPLICATE: If two items discuss the exact same news event, merge them into ONE story or drop the duplicate completely.
+        2. REWRITE: Rewrite the story completely in your own simple, friendly English so even young readers can understand. 
+           - Do NOT mention any external news channels, websites, or source names.
+           - Provide exactly 2 short, readable paragraphs.
+        3. CATEGORIZE: Choose strictly one: [Politics, Sports, Tourism, Civic, Weather, Crime, Business, General].
+        4. IMAGE SEARCH KEYWORD: Provide a simple 1-2 word universal visual keyword that represents this story on a stock photo site.
+           Examples:
+           - Football match -> "football"
+           - Political party rally -> "politician"
+           - Beach inspection -> "beach"
+           - Monsoon / flood -> "rain storm"
+           - Traffic or highway -> "highway traffic"
+           - Court order / Police -> "police car"
 
-        News to process:
-        {combined_prompt_text}
+        Strictly output a JSON array of objects:
+        [
+          {{
+            "headline": "Clear engaging headline",
+            "paragraphs": ["First easy paragraph.", "Second easy paragraph."],
+            "category": "Politics",
+            "img_keyword": "politician"
+          }}
+        ]
+
+        Input stories:
+        {combined_text}
         """
 
+        gemini_models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.5-flash-lite"]
         batch_success = False
-        for model_name in ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.5-flash-lite"]:
+
+        for model_name in gemini_models:
             try:
                 print(f"Processing batch {b//batch_size+1} with {model_name}...")
                 response = client.models.generate_content(
@@ -133,56 +180,62 @@ if raw_articles_to_process:
                     contents=prompt,
                     config={"response_mime_type": "application/json"}
                 )
-                text_response = response.text.strip()
-                parsed = json.loads(text_response)
+                parsed = json.loads(response.text.strip())
                 if isinstance(parsed, list):
-                    gemini_output_all.extend(parsed)
+                    new_articles_list.extend(parsed)
                     batch_success = True
                     break
             except Exception as e:
                 print(f"Error on {model_name}: {e}")
                 time.sleep(1)
 
-        # Fallback if AI batch fails: keep original news
         if not batch_success:
-            print(f"Falling back to original RSS for batch {b//batch_size+1}")
+            print(f"Fallback for batch {b//batch_size+1}")
             for item in batch:
-                gemini_output_all.append({
+                new_articles_list.append({
                     "headline": item['title'],
-                    "paragraphs": [item.get('summary', item['title']), "Stay tuned to Goa Live for real-time local updates."],
+                    "paragraphs": [item.get('summary', item['title']), "Follow Goa Live for ongoing local updates regarding this development."],
                     "category": "General",
                     "img_keyword": "Goa"
                 })
 
-    current_timestamp_iso = datetime.utcnow().isoformat()
-    for item in gemini_output_all:
-        time.sleep(0.05)
-        img_keyword = item.get("img_keyword", item.get("category", "Goa"))
-        pexel_img_url = get_pexels_image(img_keyword)
-        
-        full_article = {
-            "headline": item.get("headline", "").strip(),
-            "paragraphs": item.get("paragraphs", []),
-            "category": item.get("category", "General").strip().capitalize(),
-            "img_url": pexel_img_url,
-            "timestamp": current_timestamp_iso
-        }
-        
-        if full_article['headline'] and full_article['headline'].lower() not in seen_titles:
-            new_news_to_display.append(full_article)
-            seen_titles.add(full_article['headline'].lower())
+# ==========================================
+# 5. FETCH RELEVANT PHOTOS & ASSEMBLE
+# ==========================================
+current_timestamp_iso = datetime.utcnow().isoformat()
+final_new_processed = []
 
-final_news_aggregate = new_news_to_display + historical_feed
+for item in new_articles_list:
+    headline = item.get("headline", "").strip()
+    if not headline or headline.lower() in seen_headlines:
+        continue
+    
+    seen_headlines.add(headline.lower())
+    cat = item.get("category", "General").capitalize()
+    kw = item.get("img_keyword", cat)
+    
+    time.sleep(0.08)  # Rate limit courtesy
+    photo_url = get_pexels_image(kw, cat)
+
+    final_new_processed.append({
+        "headline": headline,
+        "paragraphs": item.get("paragraphs", []),
+        "category": cat,
+        "img_url": photo_url,
+        "timestamp": current_timestamp_iso
+    })
+
+final_news_aggregate = final_new_processed + historical_feed
 final_news_aggregate.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
 
 # Save state
 with open(STATE_FILE, "w", encoding="utf-8") as f:
     json.dump(final_news_aggregate, f, indent=4)
 
-print(f"Total active articles generated: {len(final_news_aggregate)}")
+print(f"Total unique stories published: {len(final_news_aggregate)}")
 
 # ==========================================
-# 4. BUILD MAGAZINE HTML
+# 6. GENERATE HTML
 # ==========================================
 filter_categories = ["ALL", "CIVIC", "POLITICS", "TOURISM", "SPORTS", "WEATHER", "CRIME", "BUSINESS", "GENERAL"]
 
@@ -191,14 +244,14 @@ cat_nav_html = "".join([
     for cat in filter_categories
 ])
 
-articles_main_feed_html = ""
+articles_html = ""
 for item in final_news_aggregate:
     cat = item.get("category", "General").capitalize()
     headline = item.get("headline", "")
     img_url = item.get("img_url", FALLBACK_GOA_IMG)
     paragraphs = "".join([f"<p>{p}</p>" for p in item.get("paragraphs", [])])
 
-    articles_main_feed_html += f"""
+    articles_html += f"""
         <article class="news-article-card" data-category="{cat.upper()}">
             <div class="article-media">
                 <img src="{img_url}" alt="{cat}" loading="lazy" onerror="this.src='{FALLBACK_GOA_IMG}'">
@@ -236,9 +289,9 @@ html_template = f"""<!DOCTYPE html>
         .feed-container {{ padding: 0 14px; display: flex; flex-direction: column; gap: 18px; max-width: 760px; margin: 0 auto; }}
         
         .news-article-card {{ background: #ffffff; border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }}
-        .article-media {{ position: relative; width: 100%; height: 200px; }}
+        .article-media {{ position: relative; width: 100%; height: 210px; background-color: #e2e8f0; }}
         .article-media img {{ width: 100%; height: 100%; object-fit: cover; }}
-        .category-pill {{ position: absolute; top: 10px; left: 10px; background: rgba(17, 24, 39, 0.85); color: #ffffff; font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; }}
+        .category-pill {{ position: absolute; top: 10px; left: 10px; background: rgba(17, 24, 39, 0.85); color: #ffffff; font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; backdrop-filter: blur(4px); }}
         
         .article-body {{ padding: 16px 18px 20px; }}
         .article-title {{ font-size: 1.12rem; font-weight: 800; line-height: 1.35; color: #0f172a; margin-bottom: 10px; }}
@@ -259,7 +312,7 @@ html_template = f"""<!DOCTYPE html>
     <div class="section-header">LATEST STORIES</div>
     
     <main class="feed-container" id="newsFeed">
-        {articles_main_feed_html}
+        {articles_html}
     </main>
     
     <footer>
@@ -287,4 +340,4 @@ html_template = f"""<!DOCTYPE html>
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(html_template)
 
-print("Generated index.html with live stories successfully!")
+print("Generated clean, unique news digest successfully!")

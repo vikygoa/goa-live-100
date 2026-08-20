@@ -28,7 +28,6 @@ FEEDS = [
 ]
 
 def clean_html_text(raw_html):
-    """Strip HTML tags, links, and publisher tags completely."""
     if not raw_html:
         return ""
     clean = re.sub(r'<[^>]+>', ' ', raw_html)
@@ -70,8 +69,6 @@ def get_pexels_image(keyword, category):
         return FALLBACK_GOA_IMG
 
     headers = {"Authorization": PEXELS_API_KEY}
-    
-    # Priority 1: Search using Gemini's precise visual keyword
     clean_kw = re.sub(r'[^a-zA-Z0-9 ]', '', keyword).strip()
     if not clean_kw or len(clean_kw) < 3:
         clean_kw = category
@@ -84,7 +81,6 @@ def get_pexels_image(keyword, category):
     except Exception as e:
         print(f"Pexels search failed for keyword '{clean_kw}': {e}")
 
-    # Priority 2: Fallback to broader Category keyword
     try:
         url = f"https://api.pexels.com/v1/search?query={category}&per_page=3&orientation=landscape"
         res = requests.get(url, headers=headers, timeout=6).json()
@@ -109,11 +105,9 @@ for url in FEEDS:
         feed = feedparser.parse(url)
         for entry in feed.entries:
             title = entry.get("title", "").strip()
-            # Remove publisher suffix (e.g., "- Times of India", "- Herald Goa")
             clean_title = re.sub(r'\s*-\s*[^-]+$', '', title).strip()
             summary = clean_html_text(entry.get("summary", ""))
 
-            # Avoid exact title duplicates
             if clean_title and clean_title.lower() not in seen_titles and clean_title.lower() not in seen_headlines:
                 seen_titles.add(clean_title.lower())
                 raw_items.append({
@@ -141,19 +135,12 @@ if raw_items:
         prompt = f"""
         You are a chief news editor for a Goa local news portal.
         Your tasks:
-        1. DEDUPLICATE: If two items discuss the exact same news event, merge them into ONE story or drop the duplicate completely.
-        2. REWRITE: Rewrite the story completely in your own simple, friendly English so even young readers can understand. 
-           - Do NOT mention any external news channels, websites, or source names.
-           - Provide exactly 2 short, readable paragraphs.
+        1. DEDUPLICATE: If multiple items discuss the exact same news event, merge them into ONE story.
+        2. REWRITE: Rewrite the story completely in simple, friendly English so even young readers can understand. 
+           - Do NOT include external source links, channel names, or website credits.
+           - Provide exactly 2 short, informative paragraphs.
         3. CATEGORIZE: Choose strictly one: [Politics, Sports, Tourism, Civic, Weather, Crime, Business, General].
-        4. IMAGE SEARCH KEYWORD: Provide a simple 1-2 word universal visual keyword that represents this story on a stock photo site.
-           Examples:
-           - Football match -> "football"
-           - Political party rally -> "politician"
-           - Beach inspection -> "beach"
-           - Monsoon / flood -> "rain storm"
-           - Traffic or highway -> "highway traffic"
-           - Court order / Police -> "police car"
+        4. IMAGE SEARCH KEYWORD: Provide a simple 1-2 word universal visual keyword that represents this story on a stock photo site (e.g. 'football', 'politician', 'beach', 'rain storm', 'highway', 'police car').
 
         Strictly output a JSON array of objects:
         [
@@ -169,7 +156,7 @@ if raw_items:
         {combined_text}
         """
 
-        gemini_models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.5-flash-lite"]
+        gemini_models = ["gemini-3.6-flash", "gemini-3.5-flash-lite"]
         batch_success = False
 
         for model_name in gemini_models:
@@ -214,7 +201,7 @@ for item in new_articles_list:
     cat = item.get("category", "General").capitalize()
     kw = item.get("img_keyword", cat)
     
-    time.sleep(0.08)  # Rate limit courtesy
+    time.sleep(0.08)
     photo_url = get_pexels_image(kw, cat)
 
     final_new_processed.append({
@@ -228,7 +215,6 @@ for item in new_articles_list:
 final_news_aggregate = final_new_processed + historical_feed
 final_news_aggregate.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
 
-# Save state
 with open(STATE_FILE, "w", encoding="utf-8") as f:
     json.dump(final_news_aggregate, f, indent=4)
 

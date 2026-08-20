@@ -128,7 +128,7 @@ def get_entity_image(search_query, category, used_images):
     except Exception:
         pass
 
-    # 3. Fallback to Pexels only for non-political generic topics (farmers, football, rain, crime)
+    # 3. Fallback to Pexels only for non-political generic topics
     if PEXELS_API_KEY and category not in ["Politics"]:
         try:
             headers = {"Authorization": PEXELS_API_KEY}
@@ -391,37 +391,38 @@ html_template = f"""<!DOCTYPE html>
         const pageSize = 30;
         let activeCategory = 'ALL';
 
-        function renderArticles() {
+        function renderArticles() {{
             const cards = Array.from(document.querySelectorAll('.news-article-card'));
-            let matched = cards.filter(card => {
+            let matched = cards.filter(card => {{
                 const cardCat = card.getAttribute('data-category');
                 return activeCategory === 'ALL' || cardCat.toUpperCase() === activeCategory.toUpperCase();
-            });
+            }});
 
             cards.forEach(card => card.style.display = 'none');
             matched.slice(0, currentCount).forEach(card => card.style.display = 'block');
 
             const btn = document.getElementById('loadMoreBtn');
-            if (currentCount >= matched.length) {
+            if (currentCount >= matched.length) {{
                 btn.style.display = 'none';
-            } else {
+            }} else {{
                 btn.style.display = 'block';
-            }
-        }
+            }}
+        }}
 
-        function loadMoreStories() {
+        function loadMoreStories() {{
             currentCount += pageSize;
             renderArticles();
-        }
+        }}
 
-        function filterCat(selectedCategory, element) {
+        function filterCat(selectedCategory, element) {{
             document.querySelectorAll('.cat-link').forEach(link => link.classList.remove('active'));
             element.classList.add('active');
             activeCategory = selectedCategory;
             currentCount = pageSize;
             renderArticles();
-        }
+        }}
 
+        // Initial Load
         currentCount = pageSize;
         renderArticles();
     </script>

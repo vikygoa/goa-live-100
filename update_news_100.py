@@ -21,7 +21,7 @@ client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 FEEDS = [
     "https://news.google.com/rss/search?q=Goa+news&hl=en-IN&gl=IN&ceid=IN:en",
-    "https://news.google.com/rss/search?q=Goa+local+news+OR+Panaji+OR+Margao+OR+Mapusa&hl=en-IN&gl=IN&ceid=IN:en",
+    "https://news.google.com/rss/search?q=Goa+Panaji+OR+Margao+OR+Mapusa+OR+Vasco&hl=en-IN&gl=IN&ceid=IN:en",
     "https://news.google.com/rss/search?q=Goa+sports+OR+Goa+football&hl=en-IN&gl=IN&ceid=IN:en",
     "https://digitalgoa.com/feed/"
 ]
@@ -43,12 +43,12 @@ def manage_retention_and_state():
                         article_date = datetime.fromisoformat(article.get('timestamp', ''))
                         if article_date > threshold_date:
                             recent_news.append(article)
-                            seen_titles.add(article.get('headline', '').lower())
+                            seen_titles.add(article.get('headline', '').strip().lower())
                     except Exception:
                         recent_news.append(article)
-                print(f"Loaded {len(historical_news)} past items. Keeping {len(recent_news)} within 15 days.")
+                print(f"Loaded {len(historical_news)} past items. Retaining {len(recent_news)} items.")
         except Exception as e:
-            print(f"Could not load state, creating fresh: {e}")
+            print(f"Could not load state, starting fresh: {e}")
 
     return recent_news, seen_titles
 
@@ -68,7 +68,7 @@ def get_pexels_image(keyword):
         if res.get("photos") and len(res["photos"]) > 0:
             return res["photos"][0]["src"]["medium"]
     except Exception as e:
-        print(f"Pexels fetch notice for '{keyword}': {e}")
+        print(f"Pexels fetch error for '{keyword}': {e}")
         
     return FALLBACK_GOA_IMG
 
@@ -88,106 +88,103 @@ for url in FEEDS:
         feed = feedparser.parse(url)
         for entry in feed.entries:
             title = entry.get("title", "").strip()
-            if title and title.lower() not in raw_feed_seen and title.lower() not in seen_titles:
-                raw_feed_seen.add(title.lower())
+            # Clean RSS publisher suffix if present
+            clean_title = re.sub(r'\s*-\s*[^-]+$', '', title).strip()
+            if clean_title and clean_title.lower() not in raw_feed_seen and clean_title.lower() not in seen_titles:
+                raw_feed_seen.add(clean_title.lower())
                 raw_articles_to_process.append({
-                    "title": title,
+                    "title": clean_title,
                     "summary": entry.get("summary", "")
                 })
     except Exception as e:
         print(f"Error parsing feed {url}: {e}")
 
 raw_articles_to_process = raw_articles_to_process[:NEWS_LIMIT_PER_RUN]
-print(f"Collected {len(raw_articles_to_process)} unique new items from RSS.")
+print(f"Collected {len(raw_articles_to_process)} raw items from RSS.")
 
-# Batch AI processing
+# Batch AI processing in small chunks of 10
 if raw_articles_to_process:
-    batch_size = 20
+    batch_size = 10
     gemini_output_all = []
 
     for b in range(0, len(raw_articles_to_process), batch_size):
         batch = raw_articles_to_process[b:b+batch_size]
-        news_input_text = [f"{i+1}. Title: {item['title']}\nSummary: {item['summary']}" for i, item in enumerate(batch)]
+        news_input_text = [f"{i+1}. Headline: {item['title']}\nDetails: {item['summary']}" for i, item in enumerate(batch)]
         combined_prompt_text = "\n\n".join(news_input_text)
 
         prompt = f"""
-        You are a Goan journalist rewriting raw news into clean, readable news cards.
-        For each story:
-        1. "headline": Crisp and bold headline.
-        2. "paragraphs": An array of 2 descriptive, readable paragraphs.
-        3. "category": Strictly choose one: Tourism, Sports, Politics, Weather, Crime, Civic, Business, General.
-        4. "img_keyword": Single English word for image search (e.g. football, beach, highway, police, politics, rain).
+        Rewrite each of the following Goa news items into easy-to-read, structured 2-paragraph summaries.
+        Strictly output a JSON array of objects with keys:
+        - "headline": (string) Clear engaging headline
+        - "paragraphs": (array of 2 strings) Detailed narrative paragraphs
+        - "category": (string) Strictly one of: Tourism, Sports, Politics, Weather, Crime, Civic, Business, General
+        - "img_keyword": (string) 1 simple keyword for photo search (e.g. beach, stadium, government, police, river)
 
-        Respond with ONLY a raw JSON array of objects. Do not include markdown ticks.
-
-        News items:
+        News to process:
         {combined_prompt_text}
         """
 
-        gemini_model_candidates = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.5-flash-lite"]
         batch_success = False
-
-        for model_variant in gemini_model_candidates:
+        for model_name in ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.5-flash-lite"]:
             try:
-                print(f"Processing batch {b//batch_size+1} with {model_variant}...")
+                print(f"Processing batch {b//batch_size+1} with {model_name}...")
                 response = client.models.generate_content(
-                    model=model_variant,
-                    contents=prompt
+                    model=model_name,
+                    contents=prompt,
+                    config={"response_mime_type": "application/json"}
                 )
                 text_response = response.text.strip()
-                # Clean any markdown json tags if present
-                text_response = re.sub(r"^```json\s*", "", text_response)
-                text_response = re.sub(r"^```\s*", "", text_response)
-                text_response = re.sub(r"\s*```$", "", text_response)
-                
-                batch_data = json.loads(text_response)
-                gemini_output_all.extend(batch_data)
-                batch_success = True
-                break
+                parsed = json.loads(text_response)
+                if isinstance(parsed, list):
+                    gemini_output_all.extend(parsed)
+                    batch_success = True
+                    break
             except Exception as e:
-                print(f"Model {model_variant} attempt error: {e}")
-                time.sleep(2)
+                print(f"Error on {model_name}: {e}")
+                time.sleep(1)
 
-        # Fallback if Gemini fails on this batch: generate standard readable summaries
+        # Fallback if AI batch fails: keep original news
         if not batch_success:
-            print(f"Using fallback format for batch {b//batch_size+1}")
+            print(f"Falling back to original RSS for batch {b//batch_size+1}")
             for item in batch:
                 gemini_output_all.append({
                     "headline": item['title'],
-                    "paragraphs": [item.get('summary', item['title']), "Follow Goa Live for ongoing local updates regarding this development."],
+                    "paragraphs": [item.get('summary', item['title']), "Stay tuned to Goa Live for real-time local updates."],
                     "category": "General",
                     "img_keyword": "Goa"
                 })
 
     current_timestamp_iso = datetime.utcnow().isoformat()
-    for idx, item in enumerate(gemini_output_all):
+    for item in gemini_output_all:
+        time.sleep(0.05)
         img_keyword = item.get("img_keyword", item.get("category", "Goa"))
         pexel_img_url = get_pexels_image(img_keyword)
         
         full_article = {
-            "headline": item.get("headline", ""),
+            "headline": item.get("headline", "").strip(),
             "paragraphs": item.get("paragraphs", []),
             "category": item.get("category", "General").strip().capitalize(),
             "img_url": pexel_img_url,
             "timestamp": current_timestamp_iso
         }
         
-        if full_article['headline'].lower() not in seen_titles:
+        if full_article['headline'] and full_article['headline'].lower() not in seen_titles:
             new_news_to_display.append(full_article)
             seen_titles.add(full_article['headline'].lower())
 
 final_news_aggregate = new_news_to_display + historical_feed
 final_news_aggregate.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
 
+# Save state
 with open(STATE_FILE, "w", encoding="utf-8") as f:
     json.dump(final_news_aggregate, f, indent=4)
 
-print(f"Total articles ready for portal: {len(final_news_aggregate)}")
+print(f"Total active articles generated: {len(final_news_aggregate)}")
 
 # ==========================================
-# 4. BUILD CLEAN MAGAZINE HTML
+# 4. BUILD MAGAZINE HTML
 # ==========================================
-filter_categories = ["ALL", "CIVIC", "POLITICS", "TOURISM", "SPORTS", "WEATHER", "CRIME", "BUSINESS"]
+filter_categories = ["ALL", "CIVIC", "POLITICS", "TOURISM", "SPORTS", "WEATHER", "CRIME", "BUSINESS", "GENERAL"]
 
 cat_nav_html = "".join([
     f'<div class="cat-link {"active" if cat == "ALL" else ""}" onclick="filterCat(\'{cat}\', this)">{cat}</div>'
@@ -220,7 +217,7 @@ html_template = f"""<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GOA LIVE – 100 Daily Goa News</title>
-    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }}
         body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f1f5f9; color: #0f172a; padding-bottom: 70px; }}
@@ -267,7 +264,7 @@ html_template = f"""<!DOCTYPE html>
     
     <footer>
         <p><strong>GOA LIVE</strong> &copy; 2026 – 15-Day Auto-Rotating Digest</p>
-        <p style="margin-top: 4px;">Powered by Gemini AI &middot; Photos via <a href="[https://www.pexels.com](https://www.pexels.com)" target="_blank" rel="noopener noreferrer">Pexels</a></p>
+        <p style="margin-top: 4px;">Powered by Gemini AI &middot; Photos via <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer">Pexels</a></p>
     </footer>
     
     <script>

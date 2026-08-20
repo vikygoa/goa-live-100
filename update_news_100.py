@@ -1,4 +1,3 @@
-
 import os
 import json
 import time
@@ -83,8 +82,8 @@ raw_feed_seen = set()
 for url in FEEDS:
     feed = feedparser.parse(url)
     for entry in feed.entries:
-        title = entry.title.strip()
-        if title.lower() not in raw_feed_seen and title.lower() not in seen_titles:
+        title = entry.get("title", "").strip()
+        if title and title.lower() not in raw_feed_seen and title.lower() not in seen_titles:
             raw_feed_seen.add(title.lower())
             raw_articles_to_process.append({
                 "title": title,
@@ -118,7 +117,7 @@ if raw_articles_to_process:
         {combined_prompt_text}
         """
 
-        gemini_model_candidates = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash"]
+        gemini_model_candidates = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-1.5-flash"]
         for model_variant in gemini_model_candidates:
             try:
                 print(f"Processing batch {b//batch_size+1} with {model_variant}...")

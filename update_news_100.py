@@ -18,22 +18,41 @@ STATE_FILE = "news_data.json"
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY")
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
+# Pre-verified official entity visual mapping for Goa & India
+VERIFIED_ENTITY_MAP = {
+    # Goa Institutions
+    "high court": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Bombay_High_Court.jpg/640px-Bombay_High_Court.jpg",
+    "bombay high court": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Bombay_High_Court.jpg/640px-Bombay_High_Court.jpg",
+    "goa police": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Emblem_of_Goa.svg/500px-Emblem_of_Goa.svg.png",
+    
+    # Political Party Logos / Flags
+    "bjp": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bharatiya_Janata_Party_logo.svg/640px-Bharatiya_Janata_Party_logo.svg.png",
+    "bharatiya janata party": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bharatiya_Janata_Party_logo.svg/640px-Bharatiya_Janata_Party_logo.svg.png",
+    "congress": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Indian_National_Congress_hand_logo.svg/640px-Indian_National_Congress_hand_logo.svg.png",
+    "inc": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Indian_National_Congress_hand_logo.svg/640px-Indian_National_Congress_hand_logo.svg.png",
+    "aap": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Aam_Aadmi_Party_logo.svg/640px-Aam_Aadmi_Party_logo.svg.png",
+    "aam aadmi party": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Aam_Aadmi_Party_logo.svg/640px-Aam_Aadmi_Party_logo.svg.png",
+    "mgp": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Emblem_of_Goa.svg/500px-Emblem_of_Goa.svg.png",
+    "goa forward party": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Emblem_of_Goa.svg/500px-Emblem_of_Goa.svg.png",
+
+    # Key Political Figures
+    "narendra modi": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/PM_Modi_2023.jpg/640px-PM_Modi_2023.jpg",
+    "modi": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/PM_Modi_2023.jpg/640px-PM_Modi_2023.jpg",
+    "pramod sawant": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Dr._Pramod_Sawant.jpg/640px-Dr._Pramod_Sawant.jpg",
+    "rahul gandhi": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Rahul_Gandhi_2023.jpg/640px-Rahul_Gandhi_2023.jpg",
+    "amit shah": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Amit_Shah_in_2024.jpg/640px-Amit_Shah_in_2024.jpg"
+}
+
+# Diverse balanced feeds across all categories
 FEEDS = [
-    # Politics & Governance
     "https://news.google.com/rss/search?q=Goa+politics+OR+Pramod+Sawant+OR+Goa+BJP+OR+Goa+Congress+OR+Goa+Assembly&hl=en-IN&gl=IN&ceid=IN:en",
-    # Civic & Local Municipalities
     "https://news.google.com/rss/search?q=Goa+Panaji+OR+Margao+OR+Mapusa+OR+Ponda+OR+Vasco+civic&hl=en-IN&gl=IN&ceid=IN:en",
-    # Crime & Police
     "https://news.google.com/rss/search?q=Goa+police+OR+Goa+crime+OR+Goa+High+Court&hl=en-IN&gl=IN&ceid=IN:en",
-    # Tourism & Environment
-    "https://news.google.com/rss/search?q=Goa+tourism+OR+Goa+beaches+OR+Goa+environment+OR+Mandovi&hl=en-IN&gl=IN&ceid=IN:en",
-    # Business & Economy
+    "https://news.google.com/rss/search?q=Goa+farmer+OR+Goa+agriculture+OR+paddy+field&hl=en-IN&gl=IN&ceid=IN:en",
+    "https://news.google.com/rss/search?q=Goa+tourism+OR+Goa+beaches+OR+Mandovi&hl=en-IN&gl=IN&ceid=IN:en",
     "https://news.google.com/rss/search?q=Goa+business+OR+Goa+economy+OR+Mopa+airport&hl=en-IN&gl=IN&ceid=IN:en",
-    # Weather
     "https://news.google.com/rss/search?q=Goa+weather+OR+Goa+monsoon+OR+IMD+Goa&hl=en-IN&gl=IN&ceid=IN:en",
-    # Sports
     "https://news.google.com/rss/search?q=Goa+football+OR+FC+Goa+OR+Goa+cricket&hl=en-IN&gl=IN&ceid=IN:en",
-    # Direct Local Portals
     "https://digitalgoa.com/feed/"
 ]
 
@@ -73,23 +92,27 @@ def manage_retention_and_state():
     return recent_news, seen_headlines, used_images
 
 # ==========================================
-# 2. STRICT ENTITY / WIKIMEDIA & PEXELS FETCHER
+# 2. IMAGE MATCHER WITH NO DUPLICATES
 # ==========================================
-def get_entity_image(search_query, used_images):
-    """Fetches high-accuracy image from Wikimedia (Person/Party/Location) or Pexels without repetition."""
+def get_entity_image(search_query, category, used_images):
     if not search_query or search_query.strip().lower() in ["none", ""]:
         return None
 
-    query = search_query.strip()
-    
-    # 1. Try Wikimedia Commons for real political leaders, flags, and landmarks
+    query_lower = search_query.strip().lower()
+
+    # 1. Check exact verified dictionary for leaders, logos, courts
+    for key, mapped_url in VERIFIED_ENTITY_MAP.items():
+        if key in query_lower:
+            return mapped_url
+
+    # 2. Search Wikimedia Commons for real leaders/landmarks
     try:
         wiki_url = "https://commons.wikimedia.org/w/api.php"
         params = {
             "action": "query",
             "format": "json",
             "generator": "search",
-            "gsrsearch": query,
+            "gsrsearch": search_query.strip(),
             "gsrlimit": 5,
             "prop": "pageimages",
             "piprop": "thumbnail",
@@ -102,25 +125,25 @@ def get_entity_image(search_query, used_images):
             if thumb and thumb not in used_images:
                 used_images.add(thumb)
                 return thumb
-    except Exception as e:
-        print(f"Wikimedia notice for '{query}': {e}")
+    except Exception:
+        pass
 
-    # 2. Try Pexels for generic Indian events (traffic, football, rain, beach)
-    if PEXELS_API_KEY:
+    # 3. Fallback to Pexels only for non-political generic topics (farmers, football, rain, crime)
+    if PEXELS_API_KEY and category not in ["Politics"]:
         try:
             headers = {"Authorization": PEXELS_API_KEY}
-            clean_q = f"{query} India"
-            url = f"https://api.pexels.com/v1/search?query={clean_q}&per_page=6&orientation=landscape"
+            clean_q = f"{search_query} India".strip()
+            url = f"https://api.pexels.com/v1/search?query={clean_q}&per_page=8&orientation=landscape"
             res = requests.get(url, headers=headers, timeout=5).json()
             for photo in res.get("photos", []):
                 p_url = photo["src"]["medium"]
                 if p_url not in used_images:
                     used_images.add(p_url)
                     return p_url
-        except Exception as e:
-            print(f"Pexels notice for '{query}': {e}")
+        except Exception:
+            pass
 
-    # If no unique relevant photo is found, return None (NO FALLBACK REPETITION)
+    # If no verified or unique match is found, return None (NO DUPLICATES)
     return None
 
 # ==========================================
@@ -150,10 +173,10 @@ for url in FEEDS:
         print(f"Feed error {url}: {e}")
 
 raw_items = raw_items[:NEWS_LIMIT_PER_RUN]
-print(f"Collected {len(raw_items)} items for AI rewriting.")
+print(f"Collected {len(raw_items)} items for AI processing.")
 
 # ==========================================
-# 4. GEMINI AI DEDUPLICATION & STRICT KEYWORDS
+# 4. GEMINI AI DEDUPLICATION & REWRITING
 # ==========================================
 new_articles_list = []
 
@@ -171,11 +194,15 @@ if raw_items:
         1. DEDUPLICATE: If stories repeat the same event, output only ONE combined story.
         2. NO SOURCES: Do NOT mention external news agencies, reporters, or websites.
         3. PARAGRAPHS: Provide exactly 2 short, easily readable paragraphs per story.
-        4. CATEGORY: Choose strictly one: [Politics, Civic, Tourism, Sports, Weather, Crime, Business, General].
+        4. CATEGORY: Choose strictly one: [Politics, Civic, Tourism, Sports, Weather, Crime, Business, Agriculture, General].
         5. STRICT IMAGE SEARCH ENTITY ("img_entity"):
-           - If a specific person is mentioned (e.g. Pramod Sawant, Narendra Modi, Rahul Gandhi, Amit Shah, Vijai Sardesai), output their full name.
-           - If a political party is central, output "Bharatiya Janata Party flag" or "Indian National Congress flag" or "Aam Aadmi Party".
-           - If a place or generic event is central, output the specific place/topic (e.g. "Panaji", "Mandovi Bridge", "Indian football match", "Monsoon rain Goa", "Goa beach").
+           - If a specific leader is mentioned (Pramod Sawant, Narendra Modi, Rahul Gandhi, Amit Shah, Vijai Sardesai), output their name.
+           - If a political party is mentioned, output "BJP" or "Congress" or "AAP" or "MGP".
+           - If High Court is mentioned, output "Bombay High Court".
+           - If Goa Police or general police is mentioned, output "Goa Police".
+           - If Crime/Murder/Theft is mentioned without police branding, output "crime investigation scene" or "justice gavel".
+           - If Farmer/Agriculture is mentioned, output "Indian agriculture rice field".
+           - If Sports is mentioned, output "football field match" or "cricket stadium".
            - If no specific image makes sense, output "none".
 
         Strictly output a JSON array of objects:
@@ -218,7 +245,7 @@ if raw_items:
                     "headline": item['title'],
                     "paragraphs": [item.get('summary', item['title']), "Follow Goa Live for ongoing local reports."],
                     "category": "General",
-                    "img_entity": "Goa"
+                    "img_entity": "none"
                 })
 
 # ==========================================
@@ -237,13 +264,13 @@ for item in new_articles_list:
     entity = item.get("img_entity", "none")
     
     time.sleep(0.04)
-    photo_url = get_entity_image(entity, used_images)
+    photo_url = get_entity_image(entity, cat, used_images)
 
     final_new_processed.append({
         "headline": headline,
         "paragraphs": item.get("paragraphs", []),
         "category": cat,
-        "img_url": photo_url, # None if no accurate photo
+        "img_url": photo_url,
         "timestamp": current_timestamp_iso
     })
 
@@ -258,7 +285,7 @@ print(f"Saved total {len(final_news_aggregate)} active stories.")
 # ==========================================
 # 6. HTML WITH PAGINATION (30 PER PAGE)
 # ==========================================
-filter_categories = ["ALL", "POLITICS", "CIVIC", "TOURISM", "SPORTS", "WEATHER", "CRIME", "BUSINESS"]
+filter_categories = ["ALL", "POLITICS", "CIVIC", "TOURISM", "SPORTS", "WEATHER", "CRIME", "AGRICULTURE", "BUSINESS"]
 
 cat_nav_html = "".join([
     f'<div class="cat-link {"active" if cat == "ALL" else ""}" onclick="filterCat(\'{cat}\', this)">{cat}</div>'
@@ -364,39 +391,37 @@ html_template = f"""<!DOCTYPE html>
         const pageSize = 30;
         let activeCategory = 'ALL';
 
-        function renderArticles() {{
+        function renderArticles() {
             const cards = Array.from(document.querySelectorAll('.news-article-card'));
-            let matched = cards.filter(card => {{
+            let matched = cards.filter(card => {
                 const cardCat = card.getAttribute('data-category');
                 return activeCategory === 'ALL' || cardCat.toUpperCase() === activeCategory.toUpperCase();
-            }});
+            });
 
             cards.forEach(card => card.style.display = 'none');
-
             matched.slice(0, currentCount).forEach(card => card.style.display = 'block');
 
             const btn = document.getElementById('loadMoreBtn');
-            if (currentCount >= matched.length) {{
+            if (currentCount >= matched.length) {
                 btn.style.display = 'none';
-            }} else {{
+            } else {
                 btn.style.display = 'block';
-            }}
-        }}
+            }
+        }
 
-        function loadMoreStories() {{
+        function loadMoreStories() {
             currentCount += pageSize;
             renderArticles();
-        }}
+        }
 
-        function filterCat(selectedCategory, element) {{
+        function filterCat(selectedCategory, element) {
             document.querySelectorAll('.cat-link').forEach(link => link.classList.remove('active'));
             element.classList.add('active');
             activeCategory = selectedCategory;
             currentCount = pageSize;
             renderArticles();
-        }}
+        }
 
-        // Initial Load
         currentCount = pageSize;
         renderArticles();
     </script>

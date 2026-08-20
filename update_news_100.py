@@ -16,14 +16,23 @@ NEWS_LIMIT_PER_RUN = 100
 STATE_FILE = "news_data.json"
 
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY")
-FALLBACK_GOA_IMG = "https://images.pexels.com/photos/4428289/pexels-photo-4428289.jpeg?auto=compress&cs=tinysrgb&w=600"
+FALLBACK_GOA_IMG = "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80"
 
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
+# Broad and balanced Goa-centric RSS feeds (Heavy on Politics & Civic)
 FEEDS = [
-    "https://news.google.com/rss/search?q=Goa+news&hl=en-IN&gl=IN&ceid=IN:en",
-    "https://news.google.com/rss/search?q=Goa+local+OR+Panaji+OR+Margao+OR+Mapusa&hl=en-IN&gl=IN&ceid=IN:en",
-    "https://news.google.com/rss/search?q=Goa+sports+OR+football&hl=en-IN&gl=IN&ceid=IN:en",
+    # 1. Politics & Government
+    "https://news.google.com/rss/search?q=Goa+politics+OR+Goa+BJP+OR+Goa+Congress+OR+Goa+Assembly+OR+Pramod+Sawant&hl=en-IN&gl=IN&ceid=IN:en",
+    # 2. Local Cities & Civic Issues
+    "https://news.google.com/rss/search?q=Goa+Panaji+OR+Margao+OR+Mapusa+OR+Ponda+OR+Vasco+civic&hl=en-IN&gl=IN&ceid=IN:en",
+    # 3. Goa Local Crime & Administration
+    "https://news.google.com/rss/search?q=Goa+police+OR+Goa+court+OR+Goa+panchayat&hl=en-IN&gl=IN&ceid=IN:en",
+    # 4. Tourism & Coastal News
+    "https://news.google.com/rss/search?q=Goa+tourism+OR+Goa+beaches+OR+Goa+environment&hl=en-IN&gl=IN&ceid=IN:en",
+    # 5. Sports & Culture (Limited quota)
+    "https://news.google.com/rss/search?q=Goa+sports+OR+Goa+football&hl=en-IN&gl=IN&ceid=IN:en",
+    # 6. Local Goan News Outlets
     "https://digitalgoa.com/feed/"
 ]
 
@@ -62,39 +71,55 @@ def manage_retention_and_state():
     return recent_news, seen_headlines
 
 # ==========================================
-# 2. ACCURATE PEXELS PHOTO SEARCH
+# 2. REAL INDIAN PHOTO FETCHER (Wikimedia + Pexels)
 # ==========================================
-def get_pexels_image(keyword, category):
-    if not PEXELS_API_KEY:
-        return FALLBACK_GOA_IMG
-
-    headers = {"Authorization": PEXELS_API_KEY}
-    clean_kw = re.sub(r'[^a-zA-Z0-9 ]', '', keyword).strip()
-    if not clean_kw or len(clean_kw) < 3:
-        clean_kw = category
-
+def get_wikimedia_image(query):
+    """Fetches real copyright-free photos for Indian politicians & Goan landmarks."""
     try:
-        url = f"https://api.pexels.com/v1/search?query={clean_kw}&per_page=5&orientation=landscape"
-        res = requests.get(url, headers=headers, timeout=6).json()
-        if res.get("photos") and len(res["photos"]) > 0:
-            return res["photos"][0]["src"]["medium"]
+        url = "https://commons.wikimedia.org/w/api.php"
+        params = {
+            "action": "query",
+            "format": "json",
+            "generator": "search",
+            "gsrsearch": f"{query}",
+            "gsrlimit": 1,
+            "prop": "pageimages",
+            "piprop": "thumbnail",
+            "pithumbsize": 600
+        }
+        res = requests.get(url, params=params, timeout=5).json()
+        pages = res.get("query", {}).get("pages", {})
+        for _, page_info in pages.items():
+            if "thumbnail" in page_info:
+                return page_info["thumbnail"]["source"]
     except Exception as e:
-        print(f"Pexels search failed for keyword '{clean_kw}': {e}")
+        print(f"Wikimedia fetch notice for '{query}': {e}")
+    return None
 
-    try:
-        url = f"https://api.pexels.com/v1/search?query={category}&per_page=3&orientation=landscape"
-        res = requests.get(url, headers=headers, timeout=6).json()
-        if res.get("photos") and len(res["photos"]) > 0:
-            return res["photos"][0]["src"]["medium"]
-    except Exception:
-        pass
-        
+def get_best_image(keyword, category):
+    # Step 1: Try Wikimedia for specific Indian/Goan entities
+    wiki_img = get_wikimedia_image(keyword)
+    if wiki_img:
+        return wiki_img
+
+    # Step 2: Try Pexels for generic visuals (adding 'India' to context)
+    if PEXELS_API_KEY:
+        headers = {"Authorization": PEXELS_API_KEY}
+        clean_kw = f"{keyword} India".strip()
+        try:
+            url = f"https://api.pexels.com/v1/search?query={clean_kw}&per_page=3&orientation=landscape"
+            res = requests.get(url, headers=headers, timeout=5).json()
+            if res.get("photos") and len(res["photos"]) > 0:
+                return res["photos"][0]["src"]["medium"]
+        except Exception:
+            pass
+
     return FALLBACK_GOA_IMG
 
 # ==========================================
-# 3. RSS COLLECTION & PRE-FILTERING
+# 3. RSS EXTRACTION (Balanced Categories)
 # ==========================================
-print("--- STARTING GOA LIVE 100 UPDATER ---")
+print("--- STARTING BALANCED GOA LIVE 100 UPDATER ---")
 historical_feed, seen_headlines = manage_retention_and_state()
 
 raw_items = []
@@ -115,13 +140,13 @@ for url in FEEDS:
                     "summary": summary
                 })
     except Exception as e:
-        print(f"Feed error {url}: {e}")
+        print(f"Feed parse notice for {url}: {e}")
 
 raw_items = raw_items[:NEWS_LIMIT_PER_RUN]
-print(f"Collected {len(raw_items)} new raw items for AI processing.")
+print(f"Collected {len(raw_items)} balanced items across politics, civic, and local feeds.")
 
 # ==========================================
-# 4. AI DEDUPLICATION, REWRITING & KEYWORDS
+# 4. AI DEDUPLICATION, BALANCING & REWRITING
 # ==========================================
 new_articles_list = []
 
@@ -133,26 +158,33 @@ if raw_items:
         combined_text = "\n\n".join(news_input)
 
         prompt = f"""
-        You are a chief news editor for a Goa local news portal.
-        Your tasks:
-        1. DEDUPLICATE: If multiple items discuss the exact same news event, merge them into ONE story.
-        2. REWRITE: Rewrite the story completely in simple, friendly English so even young readers can understand. 
-           - Do NOT include external source links, channel names, or website credits.
-           - Provide exactly 2 short, informative paragraphs.
-        3. CATEGORIZE: Choose strictly one: [Politics, Sports, Tourism, Civic, Weather, Crime, Business, General].
-        4. IMAGE SEARCH KEYWORD: Provide a simple 1-2 word universal visual keyword that represents this story on a stock photo site (e.g. 'football', 'politician', 'beach', 'rain storm', 'highway', 'police car').
+        You are an editor for a local Goa news portal.
+        
+        Guidelines:
+        1. DEDUPLICATE: If stories repeat the same news, combine them into 1 unique story.
+        2. SIMPLIFIED REWRITE: Write 2 short, engaging paragraphs in clean, simple English suitable for all readers.
+        3. NO EXTERNAL MENTIONS: Do NOT include external source names, URLs, or news channel names.
+        4. ACCURATE CATEGORY: Assign strictly one: Politics, Civic, Tourism, Sports, Weather, Crime, Business, General.
+        5. SPECIFIC SEARCH KEYWORD: Provide a keyword matching the real person, party, or place so we can fetch authentic photos.
+           Examples:
+           - Pramod Sawant speech -> "Pramod Sawant"
+           - BJP Goa meeting -> "Bharatiya Janata Party"
+           - Congress Goa rally -> "Indian National Congress"
+           - Panaji city works -> "Panaji Goa"
+           - Football match -> "Indian football"
+           - Monsoon / Rain -> "Monsoon India"
 
         Strictly output a JSON array of objects:
         [
           {{
             "headline": "Clear engaging headline",
-            "paragraphs": ["First easy paragraph.", "Second easy paragraph."],
+            "paragraphs": ["First clean paragraph.", "Second clean paragraph."],
             "category": "Politics",
-            "img_keyword": "politician"
+            "img_keyword": "Pramod Sawant"
           }}
         ]
 
-        Input stories:
+        Input items:
         {combined_text}
         """
 
@@ -173,21 +205,20 @@ if raw_items:
                     batch_success = True
                     break
             except Exception as e:
-                print(f"Error on {model_name}: {e}")
+                print(f"Model {model_name} notice: {e}")
                 time.sleep(1)
 
         if not batch_success:
-            print(f"Fallback for batch {b//batch_size+1}")
             for item in batch:
                 new_articles_list.append({
                     "headline": item['title'],
-                    "paragraphs": [item.get('summary', item['title']), "Follow Goa Live for ongoing local updates regarding this development."],
+                    "paragraphs": [item.get('summary', item['title']), "Follow Goa Live for ongoing local coverage."],
                     "category": "General",
-                    "img_keyword": "Goa"
+                    "img_keyword": "Goa India"
                 })
 
 # ==========================================
-# 5. FETCH RELEVANT PHOTOS & ASSEMBLE
+# 5. ASSEMBLE WITH REAL VISUALS
 # ==========================================
 current_timestamp_iso = datetime.utcnow().isoformat()
 final_new_processed = []
@@ -201,8 +232,8 @@ for item in new_articles_list:
     cat = item.get("category", "General").capitalize()
     kw = item.get("img_keyword", cat)
     
-    time.sleep(0.08)
-    photo_url = get_pexels_image(kw, cat)
+    time.sleep(0.05)
+    photo_url = get_best_image(kw, cat)
 
     final_new_processed.append({
         "headline": headline,
@@ -218,12 +249,12 @@ final_news_aggregate.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
 with open(STATE_FILE, "w", encoding="utf-8") as f:
     json.dump(final_news_aggregate, f, indent=4)
 
-print(f"Total unique stories published: {len(final_news_aggregate)}")
+print(f"Total balanced Goa stories published: {len(final_news_aggregate)}")
 
 # ==========================================
-# 6. GENERATE HTML
+# 6. BUILD UI
 # ==========================================
-filter_categories = ["ALL", "CIVIC", "POLITICS", "TOURISM", "SPORTS", "WEATHER", "CRIME", "BUSINESS", "GENERAL"]
+filter_categories = ["ALL", "POLITICS", "CIVIC", "TOURISM", "SPORTS", "WEATHER", "CRIME", "BUSINESS"]
 
 cat_nav_html = "".join([
     f'<div class="cat-link {"active" if cat == "ALL" else ""}" onclick="filterCat(\'{cat}\', this)">{cat}</div>'
@@ -303,7 +334,7 @@ html_template = f"""<!DOCTYPE html>
     
     <footer>
         <p><strong>GOA LIVE</strong> &copy; 2026 – 15-Day Auto-Rotating Digest</p>
-        <p style="margin-top: 4px;">Powered by Gemini AI &middot; Photos via <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer">Pexels</a></p>
+        <p style="margin-top: 4px;">Powered by Gemini AI &middot; Real Local & CC Visuals</p>
     </footer>
     
     <script>
@@ -326,4 +357,4 @@ html_template = f"""<!DOCTYPE html>
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(html_template)
 
-print("Generated clean, unique news digest successfully!")
+print("Generated clean, balanced Goa news portal successfully!")

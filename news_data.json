@@ -1,5 +1,495 @@
 [
     {
+        "headline": "Goa Tourism Teams Up with Ironman to Promote Sports Tourism",
+        "paragraphs": [
+            "Goa's tourism department has partnered with the organizers of the famous Ironman race to bring exciting athletic events to the state. This initiative aims to highlight Goa as a top destination for sports lovers alongside its famous beaches.",
+            "By hosting these thrilling endurance races, officials hope to welcome fitness enthusiasts and international tourists. The move is set to create new opportunities for local hospitality businesses while showcasing Goa's beautiful outdoor locations."
+        ],
+        "category": "Tourism",
+        "img_url": "https://images.pexels.com/photos/5735768/pexels-photo-5735768.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Goa High Court Temporarily Stops Inland Water Sports",
+        "paragraphs": [
+            "The High Court of Goa has ordered an immediate pause on all inland water sports activities across the state. Authorities have also been instructed to stop issuing any new permission certificates to sports operators for now.",
+            "The order aims to ensure that proper safety guidelines and rules are strictly followed in local rivers and backwaters. Operators will need to wait for further court directions before resuming their water rides."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/33676180/pexels-photo-33676180.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "FC Goa Gears Up for Next Matches with Strong New Leadership",
+        "paragraphs": [
+            "FC Goa is gearing up for exciting upcoming matches, including their international fixture against Arkadag FK. Coach Israil Gurung recently shared his thoughts on helping young players reach their big dreams on the field.",
+            "Adding to the team's strength, former Indian defender Gouramangi Singh is excited to start his new coaching chapter with FC Goa. Fans are eager to see the team perform well under its new leadership and competitive lineup."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/9405210/pexels-photo-9405210.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Young Footballer Tragically Passes Away During Match in Ambaulim",
+        "paragraphs": [
+            "A tragic event brought sadness to Ambaulim when a local football player collapsed during a game on the field. People present tried to offer immediate help, but the young athlete unfortunately could not be saved.",
+            "The sudden loss has heartbroken the local community, teammates, and sports lovers across Goa. Tributes have poured in from all over the village to honor the young player's love for the sport."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/186239/pexels-photo-186239.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Goa Celebrates its Long History and Deep Passion for Football",
+        "paragraphs": [
+            "Football remains the beating heart of Goa, where local players, especially from South Goa, continue to earn maximum play time in India's top league. From quiet village grounds to global tournaments, Goans are joyfully celebrating their unique football culture.",
+            "Even as major international tournaments approach, the state's love for the game shines bright. Generations of Goans continue to pass down their passion, proving why Goa remains India's proud football capital."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/29920213/pexels-photo-29920213.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "New Schedules Announced for Upcoming National Football Matches",
+        "paragraphs": [
+            "Football fans have much to look forward to as the schedule for the upcoming Indian Super League season has been released. The announcement gives supporters full match details so they can catch all the live action.",
+            "Meanwhile, local club Sporting Clube de Goa is getting ready for a exciting match against Mumbai FC. Players are training hard as thrilling football action returns to stadiums across the country."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/13434565/pexels-photo-13434565.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Kerala Blasters Secure Victory Against FC Goa",
+        "paragraphs": [
+            "Kerala Blasters ended their match on a high note by beating FC Goa in an exciting Indian Super League encounter. Both teams gave their best on the field, but Kerala Blasters managed to take the lead and hold onto it until the final whistle.",
+            "FC Goa fought hard throughout the game but could not convert enough chances to get back into the match. Fans turned out in large numbers to support their favourite players during this key football clash."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/38454829/pexels-photo-38454829.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Exploring the Unique Cultural Bond Between Goa and Cape Verde",
+        "paragraphs": [
+            "Goa and Cape Verde share a special connection that goes way beyond their mutual love for football. Both places share historical Portuguese influences, vibrant music, and a deep sense of nostalgia known as 'Sodade'.",
+            "This emotional link highlights how coastal cultures across the world can feel so familiar to one another. People from both regions continue to celebrate these shared traditions, melodies, and lifestyle elements."
+        ],
+        "category": "Tourism",
+        "img_url": "https://images.pexels.com/photos/38722937/pexels-photo-38722937.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Goa Forward Party Urges Better Sports Facilities for Young Athletes",
+        "paragraphs": [
+            "The Goa Forward Party has called on authorities to ensure that sports infrastructure is built strictly to help local athletes rather than commercial businesses. They believe young sports stars need proper grounds and equipment to grow.",
+            "Party leaders emphasized that public money spent on stadiums and training centers should directly benefit Goan youth. They want sports management to focus on nurturing talent instead of making profits."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/14317118/pexels-photo-14317118.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Indian Football Clubs Asked to Use Local Strikers in Top Leagues",
+        "paragraphs": [
+            "Football authorities are encouraging top Indian clubs to regularly field local Indian strikers in major league matches. The goal is to give homegrown forwards more playing time and international match experience.",
+            "Experts feel that giving local players the main attacking roles will strengthen the national team in the future. Fans are excited to see more Indian footballers leading the front line for their clubs."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/9405210/pexels-photo-9405210.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Get Ready for the SAFF Women\u2019s Championship 2026",
+        "paragraphs": [
+            "Football fans across the country are gearing up for the SAFF Women\u2019s Championship set for 2026. The tournament will feature top national women's teams from South Asia competing for the prestigious trophy.",
+            "Viewers in India will be able to catch all the action live on television and streaming platforms. Details about the match dates and venue schedules are being finalized for supporters to follow along."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/32266274/pexels-photo-32266274.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Asian Football Confederation Requests Report on Goan Match-Fixing Probe",
+        "paragraphs": [
+            "The Asian Football Confederation has asked local sports officials for a detailed report regarding recent match-fixing allegations in Goan football. Authorities have been investigating claims of unfair play during local matches.",
+            "Officials want to protect the honesty and reputation of the sport in the state. Strict action will be taken against anyone found guilty of compromising the fairness of these games."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/34485310/pexels-photo-34485310.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "How Football Helps Define Life and Culture in Goa",
+        "paragraphs": [
+            "Football is much more than just a game in Goa; it is an important part of daily life and local tradition. From village fields to professional stadiums, people of all ages play and watch the sport with great passion.",
+            "Over the decades, the sport has brought communities together and inspired generations of young players. The deep love for the game continues to shape the social identity of the coastal state."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/29920213/pexels-photo-29920213.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "FC Goa CEO Seeks More Transparency in Indian Football Deals",
+        "paragraphs": [
+            "FC Goa's chief executive officer has raised concerns about the lack of communication regarding a major deal between the national football federation and its sports data partner. He shared that club officials were barely consulted before the decision was made.",
+            "The club management believes that key football stakeholders should be kept informed about choices that affect the leagues. Clear communication helps ensure everyone works together for the growth of the sport."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/6949865/pexels-photo-6949865.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Remembering the Magical Careers of Footballing Legends",
+        "paragraphs": [
+            "As several legendary global football stars step down from playing professionally, fans around the world are celebrating their remarkable achievements. These iconic players have thrilled crowds for years with incredible skills and goals.",
+            "Saying goodbye to such greats marks the end of an amazing era in international sports history. However, their extraordinary plays and records will continue to inspire young athletes for generations to come."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/1198169/pexels-photo-1198169.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "FC Goa Finishes Asian Campaign with Tight Loss to Istiklol",
+        "paragraphs": [
+            "FC Goa concluded their AFC Champions League Two journey following a close 2-1 defeat against Tajikistan club Istiklol. The team put up a determined fight on the pitch but missed out on securing a draw.",
+            "Despite the loss, playing on the continental stage provided valuable competitive experience for the squad. The players will now focus on using these lessons to perform better in upcoming domestic tournaments."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/32266316/pexels-photo-32266316.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "FC Goa Hold Mohun Bagan to a Draw in Final Home Match",
+        "paragraphs": [
+            "FC Goa played out a thrilling 1-1 draw against Mohun Bagan in their final home game of the current Indian Super League season. Both sides scored beautiful goals during a tense and hard-fought contest.",
+            "The home crowd cheered loudly as FC Goa defended solidly against strong opposition attacks in the final minutes. The point gained ensures the team finishes their home matches on a positive and encouraging note."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/26694125/pexels-photo-26694125.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "FC Goa Prepares for Crucial AFC Match Amidst Indian Club Struggles",
+        "paragraphs": [
+            "Indian club football is facing a tough time on the international stage, with teams struggling to get good results in Asian competitions. All eyes are now on FC Goa as they get ready to face Turkmenistan's team, Arkadag, in a crucial upcoming match.",
+            "A win in this important game will give FC Goa a spot in the group stage of the AFC Champions League Two. Local football fans are eagerly waiting to see if FC Goa can bring back pride to Indian football."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/29920213/pexels-photo-29920213.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Premier League Coaches Support Goa's Football Revival",
+        "paragraphs": [
+            "Goa's famous football culture is getting a major boost thanks to support from English Premier League coaches. Experienced trainers are looking into new ways to help young talent in the state improve their skills and reach professional levels.",
+            "Local sports officials believe that learning from top international coaches will help Goa regain its place as a leading hub for football in India. Programs are being designed to train both kids and local coaches."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/32688082/pexels-photo-32688082.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "FC Goa Coach Criticizes Indian Football Federation Over Schedule",
+        "paragraphs": [
+            "FC Goa head coach Manolo Marquez expressed strong dissatisfaction with the All India Football Federation regarding the Indian Super League match schedule. He raised concerns after his previous remarks about team scheduling were left out of official communications.",
+            "The coach believes that better scheduling is essential to protect player health and improve team performance. Fans are now watching closely to see how the football governing body responds to these concerns."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/34485310/pexels-photo-34485310.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Goa Prepares to Host SAFF Women's Football Championship",
+        "paragraphs": [
+            "Goa is all set to host the exciting SAFF Women's Football Championship, where top teams from South Asia will compete in intense matches. Local football officials expect a thrilling tournament that will showcase the very best of women's sports in the region.",
+            "Along with the tournament, a new campaign called 'Unleash Football' was launched in Goa featuring the women's team. Sports brand Vector X has also joined as an official ball partner to support the event."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/18457221/pexels-photo-18457221.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Goa Welcomes Top Players for Asian Bridge Championship",
+        "paragraphs": [
+            "Goa is hosting some of the finest card players from across the continent for the Asian Bridge Championship. The exciting tournament brings together top mind-sports athletes to test their strategy, memory, and teamwork skills.",
+            "Organizers are thrilled to welcome international players to the coastal state for this major event. Local enthusiasts are excited for the opportunity to watch world-class bridge action up close."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/6940926/pexels-photo-6940926.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Emergency Medical Safety Plan Created for Grassroots Football in Goa",
+        "paragraphs": [
+            "The Goa Football Association is creating a new emergency response system to make grassroots football matches safer for young players. The initiative aims to ensure quick medical help is available during local matches and youth tournaments.",
+            "By training officials and having medical kits ready at grounds, the association wants to protect player health. Parents and coaches have welcomed this important move to keep young athletes safe on the field."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/6519887/pexels-photo-6519887.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Young Footballer Phibandamary Nongrum Joins Sesa Football Academy",
+        "paragraphs": [
+            "Promising footballer Phibandamary Nongrum has officially signed a deal to join the renowned Sesa Football Academy in Goa. This move gives the talented player access to top-class training facilities and expert coaching.",
+            "The Sesa Football Academy has a history of developing skilled players for national and club teams. Fans are eager to follow Phibandamary's progress as training begins in Goa."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/35102702/pexels-photo-35102702.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Modern Cricket Facility Opens in Cuncolim",
+        "paragraphs": [
+            "Cricket fans in South Goa have reason to celebrate as a new, next-generation cricket facility has opened in Cuncolim. The modern center offers high-quality pitches, practice nets, and training tools for aspiring cricketers.",
+            "The new facility aims to help young local talent hone their skills and prepare for higher levels of competitive cricket. Local coaches believe this upgrade will significantly boost the sport in the state."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/28758998/pexels-photo-28758998.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Goa Celebrates Football Fever with World Cup Spirit",
+        "paragraphs": [
+            "Football mania has taken over Goa as fans across the state display flags and gather in large numbers to celebrate major international football tournaments. Colorful banners and screen watch parties have turned local towns into lively fan hubs.",
+            "Goa has always possessed a deep passion for the game, and the exciting atmosphere shows how strongly the community connects with football. Friends and families are coming together to enjoy every moment of the matches."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/13434565/pexels-photo-13434565.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Churchill Brothers and Guardian Angel Face Relegation in Goa Pro League",
+        "paragraphs": [
+            "In a shocking turn of events in the Goa Pro League, traditional powerhouses Churchill Brothers and Guardian Angel have been relegated. Both teams struggled throughout the season and failed to secure the points needed to stay in the top division.",
+            "The relegation marks a tough phase for these well-known local clubs as they prepare to regroup for the lower division. Football fans across Goa are discussing what went wrong for the two iconic teams."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/29920213/pexels-photo-29920213.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Goa Tourism Invites Registrations for Aero Sports Activities",
+        "paragraphs": [
+            "Goa is preparing to offer exciting new adventure sports in the sky. The state tourism department has officially opened registrations for operators and enthusiasts to offer aero sports activities across popular tourist destinations.",
+            "This initiative aims to boost adventure tourism and give locals and visitors a chance to experience paragliding, powered hang gliding, and other aerial sports. Authorities are ensuring strict safety guidelines will be followed for all activities."
+        ],
+        "category": "Tourism",
+        "img_url": "https://images.pexels.com/photos/9547409/pexels-photo-9547409.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "FC Goa Eyes Top Spot in Indian Super League Campaign",
+        "paragraphs": [
+            "FC Goa is gearing up for crucial matches in the ongoing Indian Super League season as they fight for the top position in the standings. The team has been showing strong momentum on the field, aiming for consecutive victories.",
+            "With high-stakes showdowns against tough opponents like Jamshedpur FC, NorthEast United, and Mohun Bagan, every match is vital. Players are working hard to deliver strong performances and bring joy to football fans across the state."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/29920213/pexels-photo-29920213.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Sporting Goa Prepares for Tough I-League Clash Against Lajong FC",
+        "paragraphs": [
+            "Sporting Clube de Goa is getting ready to face a confident Shillong Lajong FC in an exciting upcoming match in the I-League. Both teams are looking to secure three crucial points to move up the league table.",
+            "Football supporters are looking forward to a competitive match as both clubs bring high energy to the pitch. Sporting Goa hopes to make the most of their training and deliver a victory in front of their fans."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/9407020/pexels-photo-9407020.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Discussions Grow Over Sports Tourism and Football Goals in Goa",
+        "paragraphs": [
+            "While there is continuous talk about turning Goa into a major hub for sports tourism, local football fans are calling for concrete steps. Many are asking for clearer plans regarding top international football events and upgraded local sports infrastructure.",
+            "Experts believe that connecting tourism with major sports tournaments can boost the local economy and create new opportunities. Sports lovers hope leaders will focus on bringing top-tier international competitions to the state."
+        ],
+        "category": "Tourism",
+        "img_url": "https://images.pexels.com/photos/13434565/pexels-photo-13434565.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Goan Football Reflects on Past Glory and Future Growth",
+        "paragraphs": [
+            "Goa was long considered the heartland of Indian football, producing legendary clubs and top national players over the years. However, recent trends show that local clubs are fighting hard to regain their former dominant position on the national stage.",
+            "Sports experts and former players are highlighting the need to rebuild grassroot academies and youth programs. Strengthening local sports training is seen as the key to helping Goa return to the top of Indian football."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/9189210/pexels-photo-9189210.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Diamond Harbour Seals Football Title in Thrilling Goa Final",
+        "paragraphs": [
+            "Diamond Harbour FC captured a historic football title after a dramatic match played in Goa. A late equalizing goal in the final minutes of the game earned them the championship in front of an excited crowd.",
+            "The dramatic finish sparked big celebrations among players and supporters at the stadium. Spectators enjoyed an action-packed match filled with passion, intense moments, and great teamwork."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/32711485/pexels-photo-32711485.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Sharp Drop Recorded in Goa Students Passing Via Sports Merit Marks",
+        "paragraphs": [
+            "Data released by the Goa Board shows a noticeable decrease in the number of students clearing their board exams using sports merit marks. This trend has caught the attention of teachers, parents, and sports coaches across the state.",
+            "The sports quota helps student-athletes gain extra marks for representing the state in sports events. Officials are reviewing the results to ensure young athletes receive balanced support in both sports and studies."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/29555738/pexels-photo-29555738.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "National Institute of Water Sports in Goa Highlights Coastal Training",
+        "paragraphs": [
+            "The National Institute of Water Sports in Goa continues to serve as a leading training center for water sports and safety. Its modern facility focuses on preparing professionals for water rescue, safety management, and adventure tourism.",
+            "The center plays a major role in keeping water sports safe and enjoyable for tourists and locals. It remains an essential institution guiding India's growing coastal tourism sector."
+        ],
+        "category": "Tourism",
+        "img_url": "https://images.pexels.com/photos/38128668/pexels-photo-38128668.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "East Bengal Stays in ISL Title Race with Important Victory",
+        "paragraphs": [
+            "East Bengal FC kept their title hopes alive near the top of the Indian Super League standings following a brilliant performance by striker Ezzejjari. His two goals helped secure a key victory for the team.",
+            "The win keeps East Bengal close to the league leaders as the tournament heats up. Football fans across the country are enjoying a highly competitive season packed with close matches."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/38454829/pexels-photo-38454829.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Kerala Blasters Defeat FC Goa in Indian Super League Match",
+        "paragraphs": [
+            "Kerala Blasters finished their Indian Super League season on a high note after winning their final match against FC Goa. The exciting game saw both teams put up a strong fight on the football field.",
+            "Football fans watched closely as the two popular clubs clashed. Despite FC Goa's strong efforts throughout the season, Kerala Blasters managed to secure the victory to close out their tournament campaign."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/29920213/pexels-photo-29920213.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "FC Goa Speaks Out Over Player Transfer Bidding Dispute",
+        "paragraphs": [
+            "FC Goa has expressed frustration over the transfer process involving young player Brison Fernandes. The football club stated that the player's agent deliberately created a fake bidding war between teams to unrealistically increase his price.",
+            "The club highlighted the need for fair and honest practices in football player transfers. FC Goa hopes clearer rules will protect both sports clubs and young athletes from unfair market tactics."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/35102702/pexels-photo-35102702.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Tourist Rescued After Parasailing Cable Breaks Over Goa Sea",
+        "paragraphs": [
+            "A scary moment was caught on camera in Goa when a parasailing cable suddenly snapped while a tourist was high up in the air. The terrifying video went viral online, showing the dangerous incident taking place over the sea.",
+            "Fortunately, the tourist landed safely in the water and was rescued without severe injuries. Local authorities are reviewing safety rules for water sports to ensure beach activities remain safe for everyone."
+        ],
+        "category": "Tourism",
+        "img_url": "https://images.pexels.com/photos/8414415/pexels-photo-8414415.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "India Ready for Major Asian Bridge Championship in Goa",
+        "paragraphs": [
+            "Goa is hosting Asia's biggest card game tournament, the Asian Bridge Championship. Top players from across the continent are arriving in the coastal state to compete in this mentally challenging strategic sport.",
+            "Defending champions India are fully prepared to showcase their skills and compete for top titles. Organizers hope the high-profile event will inspire more young people to learn and play mind sports."
+        ],
+        "category": "Sports",
+        "img_url": "https://images.pexels.com/photos/6940926/pexels-photo-6940926.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Security Guard Arrested for Smuggling Drugs into Colvale Jail",
+        "paragraphs": [
+            "A security guard working at Colvale Central Jail in Goa was arrested after being caught trying to bring illegal drugs into the prison. Security staff stopped her at the frisking point when they suspected suspicious behavior.",
+            "Upon searching her, officers discovered banned contraband hidden on her person. Officials have registered a formal police complaint, and strict action is being taken to keep the prison completely drug-free."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/10475178/pexels-photo-10475178.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Women's Group Demands Faster Justice After 12-Year Legal Battle",
+        "paragraphs": [
+            "A prominent women's rights organization in Goa, Bailancho Saad, has asked the government to speed up the judicial system. Their appeal came after three people were finally convicted in a 2014 assault case following a 12-year legal battle.",
+            "While welcoming the recent court judgment, activists emphasized that victims should not have to wait over a decade for justice. They are asking for urgent court reforms so future cases are handled quickly and fairly."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/30483132/pexels-photo-30483132.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Local Leaders to Decide First on Election Alliances",
+        "paragraphs": [
+            "The national leader of the Congress party has announced that local leaders in Goa will take the first step in deciding on election alliances for 2027. Their choices will then be sent to the central team for final approval.",
+            "This decision was announced during a high-level political meeting held to plan for the future. Local party leaders will soon start evaluating potential partners before making their final recommendations."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/8847005/pexels-photo-8847005.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Security Guard Killed in Moira Hit-and-Run Incident",
+        "paragraphs": [
+            "A 34-year-old security guard tragically lost his life in a hit-and-run accident on the Moira Bridge early Tuesday morning. He was walking home when an unknown vehicle hit him and dragged him along the road.",
+            "Local police are actively searching for the vehicle and the driver responsible for the crash. Authorities are asking anyone with CCTV footage or information about the incident to come forward."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/12727666/pexels-photo-12727666.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "High Court Orders Nightclub Owners to Surrender After Fatal Fire",
+        "paragraphs": [
+            "The High Court has cancelled the bail of three nightclub owners involved in a terrible fire incident in Arpora that tragically claimed 25 lives last December. The court found that the seriousness of the event required stricter action.",
+            "All three accused men have been given two weeks to surrender to the authorities. The court decision brings a significant move forward in the legal process following the tragic disaster."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/37143606/pexels-photo-37143606.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Court Charges Four People in Huge Land Grabbing Case",
+        "paragraphs": [
+            "A special court in North Goa has ordered official money laundering charges against four men involved in a major land grabbing scheme. Investigators estimate that the illegal profits in this case are worth over 220 crore rupees.",
+            "Authorities have already seized several valuable properties linked to the suspects. The trial will now move forward as the legal system acts against fake land documents and illegal property sales."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/37730971/pexels-photo-37730971.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Job and Apprenticeship Fair to Be Held in Farmagudi",
+        "paragraphs": [
+            "Young job seekers in Goa can look forward to a special career event at the Government ITI in Farmagudi. More than 20 companies will gather to help people find training and work opportunities.",
+            "The event will offer over 400 training slots and 200 direct job offers to local youth. It provides a great platform for young people to gain practical skills and start their careers."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/4342496/pexels-photo-4342496.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Planned Highway in Bhoma Won't Affect Temples or Lakes",
+        "paragraphs": [
+            "The state government has assured the High Court that the proposed elevated road in Bhoma will not damage any local temples or lakes. Official design plans were shown in court to prove that sacred sites remain completely safe.",
+            "The plan ensures that construction will be carried out without disturbing the surrounding nature or water bodies. This news brings relief to local residents who were worried about their community landmarks."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/18048834/pexels-photo-18048834.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
+        "headline": "Chief Minister Backs New Rules on Foreign Money",
+        "paragraphs": [
+            "Goa's Chief Minister has spoken in support of new rules regarding foreign donations, saying the updated laws are simple and beneficial. He explained that these regulations help track where money comes from and how it is spent.",
+            "Data shows that out of 200 groups registered to receive foreign money in Goa, less than half are currently active. The government wants to ensure all active groups handle foreign funds safely and transparently."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/7942486/pexels-photo-7942486.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:32:15.473086"
+    },
+    {
         "headline": "India Hosts 8th BRICS Working Group Meeting on Ocean and Polar Science in Goa",
         "paragraphs": [
             "India Hosts 8th BRICS Working Group Meeting on Ocean and Polar Science in Goa DD India",

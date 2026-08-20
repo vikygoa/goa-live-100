@@ -1,5 +1,785 @@
 [
     {
+        "headline": "Centre Notifies ST Assembly Reservation in Goa Following High-Level Talks",
+        "paragraphs": [
+            "The Central government has officially notified the law paving the way for political reservation for the Scheduled Tribes (ST) community in the Goa Legislative Assembly. The move gained swift momentum following recent high-level meetings between Chief Minister Pramod Sawant and Union Home Minister Amit Shah.",
+            "This long-pending decision fulfills a major legislative demand for the ST community in Goa, ensuring fair political representation in the state assembly. Local leaders and community members have welcomed the step as a significant milestone for inclusivity."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Assembly Elections Expected in February 2027, Says Chief Minister",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant announced that the next Goa Legislative Assembly elections are likely to take place in February 2027. He clarified that while this is the tentative timeline, the official dates and schedule will be determined by the Election Commission of India.",
+            "The announcement comes as political parties across Goa begin early preparations. Opposition parties are exploring alliances to challenge the ruling party, setting the stage for a competitive political contest in the state."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/3476860/pexels-photo-3476860.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Chief Minister Appeals for Protection of Berried Female Mud Crabs",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant has urged fishermen and local communities to refrain from harvesting berried female mud crabs to support marine conservation. Preserving egg-bearing crabs is crucial for maintaining sustainable crab populations in Goa\u2019s coastal ecosystems.",
+            "The initiative aims to safeguard local biodiversity and protect the livelihoods of traditional fishing communities. Agricultural research institutes and fisheries authorities are supporting awareness drives across coastal villages."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Government Assures Reopening of Sanjivani Sugar Factory",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant has assured the public that the historic Sanjivani Sugar Factory will be reopened after remaining shut for five years. The state government is finalizing modern operational models to make the facility financially viable again.",
+            "The decision brings relief to local sugarcane farmers who faced severe losses during the shutdown. Reopening the factory is expected to boost the rural economy and revive local agricultural livelihoods."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/5602330/pexels-photo-5602330.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Government Targets Creation of 8,000 Jobs in Next Six Months",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant announced an ambitious drive to generate up to 8,000 job opportunities across Goa within the next six months. The recruitment push will cover government departments as well as private sector partnerships.",
+            "The government plans to focus on skill development and local employment incentives to help youth secure stable careers. Detailed notifications for various positions are set to be released in phased stages."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "AI-Powered Governance Arrives in Goa with Konkani Language Integration",
+        "paragraphs": [
+            "The Digital India BHASHINI Division has launched 'BHASHINI Rajyam' in Goa to promote AI-powered public governance services in Konkani and other Indian languages. The initiative aims to make digital public services accessible to all citizens in their local language.",
+            "By leveraging machine translation and voice-based technology, the platform will enable non-English speakers to easily navigate government schemes. Officials believe this step will strengthen public participation and transparency in local administration."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4282059/pexels-photo-4282059.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Chief Minister Pramod Sawant Switches to Electric Vehicle to Promote Green Mobility",
+        "paragraphs": [
+            "In a push toward sustainable transport, Chief Minister Pramod Sawant has replaced his official diesel SUV with an all-electric Tata Harrier EV. The transition highlights the state government's commitment to reducing carbon emissions and adopting eco-friendly technology.",
+            "The CM encouraged citizens and government departments to switch to electric vehicles to support Goa's green energy goals. The government continues to expand EV charging infrastructure across public places in the state."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Former CM Laxmikant Parsekar Makes Mandrem Seat Pitch Ahead of State Polls",
+        "paragraphs": [
+            "Former Goa Chief Minister Laxmikant Parsekar has staked a claim for the Mandrem assembly constituency ahead of the upcoming state elections. His renewed focus on the seat has stirred political discussions within the state ruling party and local factions.",
+            "Parsekar\u2019s pitch highlights ongoing realignment efforts among senior leaders in Goa. Observers note that political strategies in key coastal constituencies like Mandrem will play a major role in shaping party tickets."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/8787628/pexels-photo-8787628.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "CM Pramod Sawant Condemns Opposition Leaders Over Vande Mataram Controversy",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant strongly criticized opposition leaders following controversial remarks regarding the national song, Vande Mataram. Sawant stated that disrespecting national symbols undermines the patriotic sentiments of citizens.",
+            "The comments have reignited political debates across the state. Ruling party representatives have demanded a public apology, while opposition leaders maintain that the issue is being politicized."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Centre Notifies Act for ST Political Reservation in Goa Assembly",
+        "paragraphs": [
+            "The Central Government has officially notified an Act paving the way for political reservation for Scheduled Tribes in the Goa Legislative Assembly. Chief Minister Pramod Sawant had previously urged Union Home Minister Amit Shah to expedite the process to ensure political representation for tribal communities.",
+            "This landmark step is expected to reshape Goa's political landscape in upcoming elections. Tribal leaders and community members across the state have welcomed the notification as a long-awaited move toward equal representation."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Government Targets Up to 8,000 New Jobs in Six Months",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant has announced an ambitious government plan to generate 6,000 to 8,000 jobs across Goa over the next six months. The initiative aims to provide fresh employment opportunities for local youth and strengthen the state's workforce.",
+            "The drive will cover recruitment in various government departments as well as private sector opportunities. Authorities are preparing a streamlined process to ensure timely hiring and placement for qualified candidates."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "High Court Cancels Bail for Luthra Brothers in Goa Nightclub Fire Case",
+        "paragraphs": [
+            "The Bombay High Court has cancelled the bail granted to the Luthra brothers in connection with a major nightclub fire in Goa. The court highlighted safety violations and the need for thorough investigations as reasons for revoking their bail.",
+            "The ruling has renewed focus on strict enforcement of safety regulations for commercial and nightlife establishments across the state. Legal proceedings are continuing to establish accountability for the incident."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/4496624/pexels-photo-4496624.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Chief Minister Expresses Concern Over Political Placards at NEET Protest",
+        "paragraphs": [
+            "Goa Chief Minister Pramod Sawant expressed strong disapproval regarding recent NEET protests in the state, criticizing the display of posters supporting political activists. He stated that mixing political agendas with educational issues undermines student causes.",
+            "The Chief Minister urged student groups to focus strictly on genuine academic and examination concerns. He added that public demonstrations should remain fair and focused without being influenced by outside political elements."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Youth Must Lead Nation's Growth with Responsible Freedom, Says CM",
+        "paragraphs": [
+            "Addressing a public gathering, Chief Minister Pramod Sawant emphasized that young citizens play a vital role in India's progress toward becoming a fully developed nation. He stated that while freedom of thought is essential, it must be matched with civic responsibility.",
+            "He encouraged youth to participate actively in community development and public service initiatives. The Chief Minister added that positive youth engagement is key to building a stronger state and nation."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "CM Sawant Backs FCRA Legislation as NGO Registrations Reviewed",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant supported the Foreign Contribution Regulation Act (FCRA) rules, stating that proper oversight ensures transparency in foreign funding received by non-governmental organizations.",
+            "Official data reveals that out of 200 recorded FCRA registrations in Goa, only 78 are currently active. State authorities emphasized that compliance checks will continue to ensure financial accountability."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Political Parties Review Strategies Ahead of 2026 Goa Assembly Polls",
+        "paragraphs": [
+            "Political strategy discussions are gaining momentum in Goa as opposition parties prepare plans to challenge the ruling party in the 2026 Assembly elections. Analysts highlight that local constituency issues and alliances will play a key role in shaping public opinion.",
+            "Parties are focusing on grassroots connection and public outreach programs across urban and rural belts. The state is expected to see increased political activity and debate in the coming months."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Congress President Responds Amid Ongoing National Symbol Row",
+        "paragraphs": [
+            "Congress President Mallikarjun Kharge delivered a sharp response during an ongoing political debate regarding freedom struggles and national patriotic symbols. He questioned the historical contributions of ruling party leaders during past national movements.",
+            "The statements have triggered intense debate among political parties, highlighting deep ideological differences. Leaders across political lines continue to exchange opposing views on national history."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/15470123/pexels-photo-15470123.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Anti-Narcotics Enforcement Strengthened Across Goa",
+        "paragraphs": [
+            "Law enforcement authorities in Goa have stepped up vigilance and anti-narcotics drives across coastal and urban areas. Special police teams are carrying out regular checks to curb illegal drug activities and maintain public safety.",
+            "Officials reaffirmed a strict policy against narcotics operations, encouraging citizens to report suspicious behavior. Patrols and surprise inspections will continue in high-footfall tourist zones."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/4496624/pexels-photo-4496624.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa CM Urges Central Government to Expedite ST Political Quota",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant recently met Union Home Minister Amit Shah to request the early implementation of political reservations for Scheduled Tribes in the Goa state assembly. The Chief Minister emphasized that the long-standing demand needs a swift resolution to ensure proper representation for the community.",
+            "CM Sawant expressed confidence that the central government will take necessary steps as soon as possible. The state leadership continues to press for dedicated seats for the ST population ahead of upcoming electoral cycles."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "CM Pramod Sawant Calls on Youth to Drive Innovation and National Growth",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant addressed students and young citizens, encouraging them to think beyond traditional classroom learning and embrace creative innovation. He emphasized that the country's progress relies heavily on the energy, vision, and problem-solving abilities of its youth.",
+            "Highlighting the national goal of Viksit Bharat, CM Sawant urged the younger generation to take an active leadership role in shaping the future. He assured that the state government is committed to providing modern resources and platforms to nurture young talent."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Celebrates Flag Hoisting Ceremony with CM Pramod Sawant",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant hoisted the national flag at a grand official ceremony, bringing citizens together to celebrate national pride and unity. During his address, he highlighted the state's ongoing development projects and welfare initiatives designed to serve every section of society.",
+            "The event featured ceremonial parades and cultural performances by local students. CM Sawant reiterated the state\u2019s commitment to sustainable growth, good governance, and improving the quality of life for all Goans."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Debate Intensifies over FCRA Regulations and Local Property Concerns",
+        "paragraphs": [
+            "A political debate has broken out in Goa regarding Foreign Contribution Regulation Act rules, with Chief Minister Pramod Sawant questioning the opposition's stance on the matter. Meanwhile, local community groups, including Catholic associations, have raised concerns over potential threats to institutional properties.",
+            "The discussion centers on ensuring regulatory compliance while safeguarding local community assets and freedom. State leaders have stated that public interests and legitimate organizational rights will be carefully balanced."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Eases Property Registration by Allowing District-Wide Processing",
+        "paragraphs": [
+            "In a significant relief for property owners, the Goa government now permits citizens to register their property documents at any sub-registrar office within their respective district. Previously, property buyers and sellers were restricted to specific local jurisdiction offices.",
+            "This move aims to reduce waiting times, eliminate administrative bottlenecks, and make official processes far more convenient. The government expects the decision to streamline real estate transactions across the state."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Development Must Not Come at the Cost of Heritage, Says CM Sawant",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant stressed that Goa\u2019s rich historical and cultural heritage must be protected alongside modern infrastructure development. Speaking at a local event, he noted that economic growth should always remain balanced with environmental and cultural preservation.",
+            "He called upon urban planners, developers, and local communities to safeguard historic landmarks while pursuing modern projects. The state government plans to enforce guidelines that protect Goa's unique identity."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Honours Freedom Fighters on Goa Revolution Day",
+        "paragraphs": [
+            "On the occasion of Goa Revolution Day, the Governor and Chief Minister Pramod Sawant paid rich tributes to the brave freedom fighters who fought for the state's liberation. Dignitaries laid wreaths at the memorial, remembering the sacrifices made during the freedom movement.",
+            "Addressing the gathering, leaders reminded the public of the courageous historic movement that laid the foundation for modern Goa. They urged citizens to uphold the values of unity, freedom, and democratic integrity."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "CM Pramod Sawant Inaugurates World Ocean Science Congress at Dona Paula",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant officially inaugurated the World Ocean Science Congress 2026 at Dona Paula. The prestigious event brings together marine scientists, researchers, and environmental experts to discuss ocean conservation and sustainable marine ecology.",
+            "During his inaugural address, CM Sawant highlighted Goa's vital connection to the sea and emphasized the need for scientific solutions to combat coastal erosion and marine pollution. The congress will host several technical sessions on sustainable blue economy practices."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/8360135/pexels-photo-8360135.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "15th Goa Marathi Film Festival Inaugurated by CM Pramod Sawant",
+        "paragraphs": [
+            "The 15th edition of the Goa Marathi Film Festival commenced with great enthusiasm as Chief Minister Pramod Sawant inaugurated the event. The festival showcases a diverse lineup of Marathi cinema, celebrating talented filmmakers, actors, and technicians.",
+            "Speaking at the opening ceremony, CM Sawant praised the rich storytelling tradition of Marathi cinema and reiterated the state's support for arts and culture. The multi-day event is set to draw film enthusiasts and industry delegates from across the region."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Police Force Strengthened with 46 New Vehicles and New Officers",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant flagged off 46 new police vehicles to enhance mobility and emergency response times across the state. In addition, appointment letters were distributed to newly recruited Police Sub-Inspectors during a formal ceremony.",
+            "The CM stated that modernizing the police fleet and reinforcing manpower are key steps toward maintaining law and order in Goa. The new officers and upgraded patrol vehicles will be deployed immediately to boost public safety."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4496624/pexels-photo-4496624.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Process to Reserve Four Assembly Seats for ST Community in Goa Underway",
+        "paragraphs": [
+            "The process to reserve four Assembly seats for the Scheduled Tribe community in Goa is progressing rapidly, with expectations to finalize the work within a month. Scheduled Tribe leaders recently met Chief Minister Pramod Sawant to request an expedited political reservation process ahead of upcoming elections.",
+            "The delimitation exercise aims to ensure fair political representation for the Scheduled Tribe population in the state assembly. Authorities and community leaders remain hopeful that the administrative procedures will be completed well before the 2027 Goa Assembly elections."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Celebrates 40 Years of Progress and Pride on Statehood Day",
+        "paragraphs": [
+            "Goa marked a major milestone as the state celebrated 40 years of progress and cultural pride on its Statehood Day. The occasion highlighted the remarkable journey of the coastal state since achieving full statehood.",
+            "Official events and community programs were organized across the state to commemorate the historical landmark. Leaders emphasized Goa's transformation over the decades while reaffirming their commitment to sustainable growth and preserving unique local traditions."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/11438923/pexels-photo-11438923.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa to Set Up 70 New Electric Vehicle Charging Stations",
+        "paragraphs": [
+            "Goa is expanding its green mobility network by establishing 70 new electric vehicle charging stations under the PM E-Drive Scheme. This initiative aims to encourage the widespread adoption of eco-friendly transport options across the state.",
+            "The new charging points will be placed at strategic locations to serve both local commuters and tourists. By improving infrastructure, the state government hopes to reduce carbon emissions and build a cleaner transportation ecosystem."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4678065/pexels-photo-4678065.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Union Minister L. Murugan Reviews BJP Organisational Preparations in Goa",
+        "paragraphs": [
+            "Union Minister of State L. Murugan recently chaired a key meeting in Goa to review the Bharatiya Janata Party's organizational readiness. Party workers and local leaders gathered to discuss strategies and future outreach programs.",
+            "The review focused on strengthening grassroots connectivity and evaluating ongoing developmental initiatives in the region. Leadership emphasized the importance of teamwork and active communication with local communities."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/3476860/pexels-photo-3476860.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Chief Minister Sawant Defends State BJP Chief's Social Media Remarks",
+        "paragraphs": [
+            "Goa Chief Minister Pramod Sawant has defended the state BJP chief regarding a controversial social media post made during student protests. The Chief Minister addressed the growing political debate surrounding the issue.",
+            "Sawant stated that critics were misinterpreting the context of the post to create unnecessary controversy. He urged youth groups and students to maintain open dialogue with the government rather than politicizing the matter."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Joint Constitution Committee Concludes 'One Nation, One Election' Consultations in Goa",
+        "paragraphs": [
+            "The Joint Constitution Committee has concluded its consultation sessions on the proposed 'One Nation, One Election' initiative in Goa. Discussions were held with local legislators, political leaders, and key civic stakeholders.",
+            "The consultations aimed to gather feedback and address regional concerns regarding simultaneous elections across India. Participants shared their perspectives on legislative reforms and operational logistics required for such a transition."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa to Focus on Sustainable Architecture and Heritage Preservation",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant announced plans to position Goa as a living laboratory for sustainable architecture. Speaking at a national conference in Delhi, he emphasized blending modern eco-friendly construction techniques with traditional Goan heritage.",
+            "The state government pledged that environmental protection and heritage conservation will remain top priorities during future infrastructure growth. Authorities plan to safeguard green zones while supporting planned urban development."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Foundation Stone to Be Laid for Dr. Babasaheb Ambedkar Bhavan",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant will lay the foundation stone for the new Dr. Babasaheb Ambedkar Bhavan on April 14. The upcoming facility is expected to serve as a center for community welfare, cultural activities, and social empowerment programs.",
+            "The initiative honors the enduring legacy of Dr. B.R. Ambedkar while providing modern infrastructure for public gatherings. Local leaders and community members are preparing to mark the historic ceremony."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa CM defends police questioning over placard incident",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant has strongly defended the recent police questioning regarding a 'Free Umar Khalid' placard in the state. He emphasized that law enforcement agencies are simply carrying out their duties to maintain peace and public order.",
+            "The issue has sparked discussions across the region regarding freedom of expression and security measures. The administration maintains that such inquiries are necessary to ensure safety and prevent any potential unrest."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa CM promotes innovation and women's education",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant has actively encouraged students across the state to focus on innovation and modern learning. Speaking at recent events, he highlighted the importance of empowering the youth with future-ready skills.",
+            "As part of initiatives to boost educational infrastructure, the new Ahilya Girls Hostel was recently inaugurated at Khandola. This facility aims to provide better residential options and open new doors for women's education in Goa."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Cabinet reshuffle in Goa brings two new ministers on board",
+        "paragraphs": [
+            "Goa has witnessed a significant political development with a cabinet reshuffle that saw the induction of two new ministers. The changes are aimed at strengthening governance and improving administrative efficiency across various departments.",
+            "Chief Minister Pramod Sawant noted that the reshuffle brings fresh energy into the administration. The newly appointed ministers are expected to take charge of their respective portfolios shortly to drive ongoing developmental projects."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa CM Sawant open to women's reservation for his assembly seat",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant has stated that he would not mind if his own legislative assembly seat is reserved for women in the future. He expressed strong support for women's empowerment and greater political representation.",
+            "His remarks come amid wider discussions on gender equality in governance and policy-making. The statement has been widely welcomed by various social groups advocating for increased participation of women in leadership roles."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "BJP retains ground as opposition gains in Goa District Council polls",
+        "paragraphs": [
+            "The recently concluded Goa District Council polls witnessed a competitive political battle, with the Bharatiya Janata Party holding onto key areas while the opposition managed to secure notable gains.",
+            "Political analysts are closely examining the election results to gauge the shifting dynamics across rural constituencies. Both ruling and opposition parties are now gearing up for future electoral challenges in the state."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/3476860/pexels-photo-3476860.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa youth unite in massive rally against drug abuse",
+        "paragraphs": [
+            "Over 3,000 youngsters gathered in Goa to participate in a massive youth rally aimed at combating drug abuse. Attendees proudly pledged their support to the nationwide Nasha Mukt Bharat Abhiyaan to create a healthier society.",
+            "The event was graced by prominent leaders, including Chief Minister Dr. Pramod Sawant, Dr. Virendra Kumar, and Shri Subhash Phal Desai. Dignitaries stressed the importance of community involvement and awareness in keeping the youth away from substance abuse."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "CM Sawant to inaugurate 42nd Surashree Kesarbai Kerkar Sangeet Samaroha",
+        "paragraphs": [
+            "Chief Minister Dr. Pramod Sawant is set to inaugurate the prestigious 42nd Surashree Kesarbai Kerkar Sangeet Samaroha at the Kala Academy in Goa. The annual music festival celebrates classical traditions and brings renowned artists together.",
+            "Music enthusiasts from across the state are eagerly anticipating the multi-day cultural event. It serves as a major platform to promote classical music and honor legendary performers in the region."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/17037542/pexels-photo-17037542.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa CM hails Bombay HC verdict in Tarun Tejpal case",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant has welcomed the Bombay High Court's ruling upholding the 10-year jail term for Tarun Tejpal in a high-profile sexual assault case. He described the judicial decision as a decisive victory for justice.",
+            "The case, which has drawn extensive public and media attention over the years, marks a significant closure for the legal proceedings. State leaders reiterated their commitment to ensuring safety and justice for survivors."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Science Centre gears up for International Museum Day 2026",
+        "paragraphs": [
+            "The Goa Science Centre is preparing to host special celebrations for International Museum Day 2026, featuring a unique \"My Own Collection\" exhibition. The initiative aims to engage the public and encourage community participation in heritage preservation.",
+            "Visitors can expect to see rare and fascinating personal collections displayed by enthusiasts of all ages. Organizers hope the event will inspire curiosity and foster a deeper appreciation for history, art, and science."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa to develop pack house and agri-logistics facility at Mopa Airport",
+        "paragraphs": [
+            "Goa is set to boost its agricultural exports with the development of a dedicated pack house and agri-logistics facility at Mopa Airport. A formal Memorandum of Understanding has been signed between GAPLM and GMR Airport Limited.",
+            "This infrastructure project will streamline the export process for local farmers and producers, enabling them to reach international markets efficiently. Officials believe this will significantly enhance the economic growth of the state's agricultural sector."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "AIIA Goa Launches Special Healthcare Services on International Women\u2019s Day",
+        "paragraphs": [
+            "The All India Institute of Ayurveda in Goa marked International Women's Day by inaugurating specialized healthcare services designed to support female patients across the state. The initiative aims to provide focused, holistic treatment and wellness programs tailored to women's specific health needs.",
+            "Officials highlighted that these new facilities will improve access to traditional medicine and expert consultations for women from all backgrounds. The event reflected a broader commitment to enhancing public health infrastructure and empowering women through proactive care."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "NABARD Goa Organises State Credit Seminar 2025-26",
+        "paragraphs": [
+            "NABARD Goa recently hosted its State Credit Seminar for 2025-26, bringing together key financial stakeholders, government officials, and local development leaders. During the event, the State Focus Paper for 2026-27 was officially unveiled to guide future priority sector lending.",
+            "The paper outlines strategic credit plans aimed at boosting agriculture, rural infrastructure, and micro-enterprises across Goa. Leaders highlighted the importance of collaborative banking efforts to ensure sustainable economic growth and rural empowerment in the coming years."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/5602330/pexels-photo-5602330.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Marks 64th Liberation Day as CM Outlines Vision 2037",
+        "paragraphs": [
+            "Goa celebrated its 64th Liberation Day with grand official ceremonies, honoring the freedom fighters who fought to liberate the state from Portuguese rule. Citizens and dignitaries gathered across the state to pay tribute to the historical sacrifices that shaped modern Goa.",
+            "Addressing the state, Chief Minister Pramod Sawant called upon citizens to work together towards transforming Goa into a fully developed state by 2037. He highlighted key infrastructure, welfare, and economic goals aimed at driving progress over the next decade."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Delimitation Debate Surrounds ST Reservation Ahead of 2027 Elections",
+        "paragraphs": [
+            "Discussions are intensifying in Goa regarding the completion of the delimitation process to secure political reservation for the Scheduled Tribes community before the 2027 Assembly elections. Community leaders and political figures are closely monitoring the countdown and pressing for timely action.",
+            "The government faces growing calls to finalize electoral boundaries so that reserved seats can be officially designated. Ensuring proper political representation remains a major priority for local tribal associations and key political parties across the state."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Four Detained Following Protests Over Zuari Dam Project at Goa Assembly",
+        "paragraphs": [
+            "Police detained four individuals during a demonstration near the Goa Legislative Assembly complex over concerns surrounding the proposed Zuari dam project. Protesters gathered to voice opposition to the project, raising issues related to environmental impact and local displacement.",
+            "Security was heightened around the Assembly building to maintain order as authorities engaged with the demonstrators. Activists continue to demand transparent public consultations and thorough environmental reviews before major construction moves forward."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Government Aims to Create Up to 8,000 Jobs in Six Months",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant announced that the Goa government plans to generate between 6,000 and 8,000 new employment opportunities over the next six months. The job creation initiative will span both public sector appointments and private sector opportunities across various industries.",
+            "The government hopes this massive hiring drive will support local youth and boost the state's economic recovery. Special training and skill development programs are also being lined up to help job seekers secure these emerging employment opportunities."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa CM Promotes Modern Farming With Agri-Drone Demonstration",
+        "paragraphs": [
+            "In a push toward modernizing agriculture, Goa Chief Minister Pramod Sawant inaugurated a live agri-drone demonstration aimed at showing farmers the benefits of technology in crop management. The event showcased how drones can efficiently spray fertilizers, monitor crop health, and save valuable labor.",
+            "During the event, several outstanding local farmers were felicitated for adopting innovative agricultural practices. The administration reiterated its pledge to subsidize modern farming equipment and encourage sustainable agricultural tech throughout the state."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa CM Pramod Sawant Switches to Electric Vehicle for Official Use",
+        "paragraphs": [
+            "In a major step toward promoting clean energy, Chief Minister Pramod Sawant has adopted a Tata Harrier EV as his official government vehicle. The move reflects the state's broader effort to lead by example in reducing carbon emissions and encouraging green mobility.",
+            "The adoption of electric vehicles by high-ranking officials is part of Goa's strategy to expand EV infrastructure and incentivize eco-friendly transportation choices. State leaders hope this transition encourages more citizens and government departments to switch to electric vehicles."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Heritage and Development Are Partners in Building the Nation, Says Goa CM",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant emphasized that protecting heritage structures and driving modern development are mutually supportive goals for the state. Speaking on urban planning, he called for preserving historical buildings while advancing essential infrastructure for growing local needs.",
+            "The Chief Minister stressed that Goa's rich architectural history is vital to its identity and appeal. He assured that future urban projects will adopt sustainable designs that respect historical landmarks alongside modern technological progress."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa CM Pitches 'Work From Beach' Concept to Encourage Remote Work Tourism",
+        "paragraphs": [
+            "Building on national remote-work initiatives, Chief Minister Pramod Sawant introduced the 'Work From Beach' concept to attract digital nomads and professionals to Goa. The idea aims to blend remote working opportunities with Goa's famous coastal lifestyle and hospitality.",
+            "To support remote workers, the state is looking to enhance high-speed internet connectivity and create dedicated co-working spaces near popular coastal areas. Officials believe this initiative will boost off-season tourism and support local hospitality businesses year-round."
+        ],
+        "category": "Tourism",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "CM Emphasises Integration of Traditional Medicine with Modern Healthcare",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant highlighted the need for a scientific and structured integration of traditional systems of medicine, like Ayurveda, with modern medical frameworks. He noted that combining both disciplines can offer patients comprehensive and holistic treatment plans.",
+            "The state government plans to support research and clinical collaborations to establish evidence-based healthcare practices. Officials aim to position Goa as a leader in integrated medical services and wellness tourism in the near future."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Student Parliament Competition Holds Prize Distribution Event",
+        "paragraphs": [
+            "The prize distribution ceremony for the Student Parliament Competition was successfully organized in Goa. The initiative aims to encourage civic awareness, debate, and democratic participation among young students across the state.",
+            "Dignitaries presented awards to the winning participants and commended their sharp analytical skills and understanding of legislative procedures. Officials highlighted the importance of such events in grooming future leaders."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/28368719/pexels-photo-28368719.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Heritage and Development Go Hand in Hand, Says Chief Minister",
+        "paragraphs": [
+            "Goa Chief Minister Pramod Sawant emphasized that modern development in the state will continue alongside the protection and celebration of its rich cultural heritage. He noted that progress should never come at the cost of local identity.",
+            "Addressing the public, the Chief Minister reiterated the administration's commitment to preserving historical landmarks while modernizing infrastructure to meet the growing needs of residents and visitors alike."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Om Birla Inaugurates Commonwealth Parliamentary Conference in Goa",
+        "paragraphs": [
+            "Lok Sabha Speaker Om Birla inaugurated the Commonwealth Parliamentary Association India Region Zone VII Conference in Goa. The event brought together lawmakers and legislative leaders to discuss democratic governance and parliamentary practices.",
+            "During his opening address, Speaker Birla highlighted the vital role of parliamentary forums in addressing regional issues and strengthening democratic values. Leaders gathered at the conference pledged to enhance legislative efficiency and public engagement."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/28861116/pexels-photo-28861116.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa Government Vows to Extend Fishery Benefits to Every Household",
+        "paragraphs": [
+            "The Goa government has announced its commitment to ensuring that central and state welfare schemes for the fisheries sector reach every eligible family across the state. Chief Minister Pramod Sawant highlighted the crucial role of fishing in the local economy.",
+            "Officials are working on streamlined delivery mechanisms so that financial assistance, modern equipment, and subsidies can be accessed seamlessly by traditional fishermen and allied workers."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/28785535/pexels-photo-28785535.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Cabinet Approves Creation of 150 New Posts for Comunidades",
+        "paragraphs": [
+            "In a major administrative boost, the Goa Cabinet has approved the creation of 150 new posts dedicated to strengthening the functioning of traditional Comunidade bodies across the state.",
+            "The decision is expected to streamline administrative operations, improve record management, and ensure faster resolution of land and community affairs managed by these historical institutions."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/31542728/pexels-photo-31542728.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Union Minister Calls for United Action Against Drug Abuse in Goa",
+        "paragraphs": [
+            "A major event under the Nasha Mukt Bharat Abhiyan campaign was held in Goa, where a Union Minister called for a collective societal effort to eliminate drug abuse.",
+            "The event focused on raising awareness among youth and strengthening community support networks. Speakers urged parents, educational institutions, and enforcement agencies to work together for a drug-free society."
+        ],
+        "category": "General",
+        "img_url": "https://images.pexels.com/photos/38048234/pexels-photo-38048234.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Ayush Wellness Centre Opened at Goa Secretariat",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant inaugurated a new Ayush Wellness Centre at the Secretariat complex. The facility aims to offer holistic health and preventive care services to government employees and visitors.",
+            "The centre will provide traditional healthcare solutions, including Ayurveda and Yoga support, promoting wellness and stress management within the workplace environment."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Chief Minister Recovering Smoothly After Angioplasty Procedure",
+        "paragraphs": [
+            "Goa Chief Minister Pramod Sawant underwent a successful angioplasty procedure at a hospital in Pune and is currently recovering well, according to medical officials.",
+            "Doctors monitoring his condition reported that he is stable and progressing as expected. Support and wishes for a speedy recovery have been pouring in from across political parties and the public."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Chief Minister Supports Police Action Over Controversial Placards",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant backed recent police action regarding controversial placards displayed during protests in Goa. He stated that law enforcement must act firmly against any attempts to disturb social harmony.",
+            "The Chief Minister emphasized that while peaceful protest is a constitutional right, actions that provoke discord or promote anti-national sentiments will not be tolerated in the state."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Social Groups Raise Concerns Regarding Political Quota for Scheduled Tribes",
+        "paragraphs": [
+            "Key social organizations in Goa have raised concerns over the proposed implementation of political reservations for Scheduled Tribes in legislative representation.",
+            "Community leaders urged the government to address historical discrepancies and ensure fair representation without causing social tensions, calling for broader consultations before finalizing policies."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/4428293/pexels-photo-4428293.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Former Minister and BJP MLA Jennifer Monserrate Passes Away",
+        "paragraphs": [
+            "Senior BJP leader and former minister Jennifer Monserrate has passed away at the age of 56. Her sudden demise has brought widespread grief across Goa's political spectrum.",
+            "Known for her active involvement in public service and community welfare, leaders from various political parties expressed deep condolences, honoring her contributions to the development of the state."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/6897143/pexels-photo-6897143.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Chief Minister Pramod Sawant Set to Present State Budget",
+        "paragraphs": [
+            "Chief Minister Pramod Sawant is set to present the state budget for Goa, focusing on economic growth, infrastructure development, and social welfare programs.",
+            "Expectations are high among citizens and business sectors, with key announcements anticipated in tourism, agriculture, health, and employment generation for the upcoming fiscal year."
+        ],
+        "category": "Business",
+        "img_url": "https://images.pexels.com/photos/4510941/pexels-photo-4510941.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Tragic Nightclub Fire in Arpora Claims 25 Lives After Cylinder Blast",
+        "paragraphs": [
+            "A devastating fire broke out at a popular nightclub in Arpora, North Goa, following a sudden cylinder blast. The tragic incident has claimed the lives of 25 people, sending shockwaves through the local community and tourists alike.",
+            "Emergency services rushed to the scene to battle the massive flames and conduct rescue operations. Authorities are currently investigating the safety compliance of the establishment to prevent such disasters in the future."
+        ],
+        "category": "Crime",
+        "img_url": "https://images.pexels.com/photos/4496624/pexels-photo-4496624.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Goa MLA Jennifer Monserrate Passes Away After Prolonged Illness",
+        "paragraphs": [
+            "Senior Goa legislator Jennifer Monserrate has passed away following a prolonged illness. Her demise is a significant loss to the state's political landscape and her constituents.",
+            "Leaders from various political parties have expressed their deep condolences and grief over her passing. She is remembered for her dedicated service and contributions to public welfare in Goa."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/6897143/pexels-photo-6897143.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "High Court Demands Action on Illegal Highway Hoardings from Local Bodies",
+        "paragraphs": [
+            "The High Court has sought strict compliance reports from five local panchayats, the Mapusa civic body, and the Corporation of the City of Panaji regarding the removal of illegal highway hoardings.",
+            "The court's directive emphasizes the need to clear visual clutter and ensure road safety across these jurisdictions. Authorities are now expected to step up enforcement measures to clear unauthorized displays."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/35333488/pexels-photo-35333488.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "BJP Panel Sweeps Panaji Municipal Polls as Utpal Parrikar Falls Short",
+        "paragraphs": [
+            "The ruling party-backed panel has secured a resounding victory in the Panaji municipal elections, winning 27 out of the 30 contested seats. This dominant performance marks a major electoral success for the party in the capital.",
+            "Meanwhile, the rival 'Ami Panjekar' panel led by Utpal Parrikar fell significantly short of expectations. The election results reflect strong voter support for the winning panel's local development agenda."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/3476860/pexels-photo-3476860.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Margao Civic Body Struggles With Waste Management Costs and Infrastructure",
+        "paragraphs": [
+            "Facing a severe shortage of a dedicated local garbage treatment plant, the Margao civic body has been forced to shell out a staggering Rs 44 lakh per month for external waste disposal.",
+            "To resolve this heavy financial burden, authorities have announced plans to commission a new gasification plant by Republic Day. Additionally, local bodies across other regions like Ponda are also upgrading their waste facilities."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/17037542/pexels-photo-17037542.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Panjim Residents Protest Against New Casino Ship in Mandovi River",
+        "paragraphs": [
+            "Residents of Panjim have staged widespread protests across Goa to voice their strong opposition to the deployment of a new casino ship in the Mandovi river. Locals argue that the vessel will negatively impact the river's ecosystem and local tourism.",
+            "The growing agitation highlights the ongoing tensions between commercial tourism ventures and resident welfare. Protesters are urging the government to reconsider permissions granted for new floating casinos in city waters."
+        ],
+        "category": "Tourism",
+        "img_url": "https://images.pexels.com/photos/11438923/pexels-photo-11438923.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Panaji Civic Polls: Public Suggestions Invited for Delimitation of 30 CCP Wards",
+        "paragraphs": [
+            "Authorities have officially invited public suggestions and objections regarding the delimitation of the 30 wards under the Corporation of the City of Panaji (CCP) ahead of the upcoming civic polls. Residents and local stakeholders now have an opportunity to share their feedback on the proposed ward boundaries to ensure fair representation.",
+            "This crucial step comes amidst ongoing discussions about the civic body's administrative effectiveness and grassroots governance in the capital city. Citizens are encouraged to actively participate in the process to help shape the future development and management of their municipal wards."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/11438923/pexels-photo-11438923.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "PWD Minister Digambar Kamat Addresses Public Grievances in Margao",
+        "paragraphs": [
+            "PWD Minister Digambar Kamat recently held interactive civic meetings in Margao to listen directly to the concerns and grievances of local residents. The sessions provided a platform for citizens to voice infrastructure and municipal issues affecting their daily lives.",
+            "The minister assured the public that urgent steps would be taken to resolve the highlighted problems, emphasizing the government's commitment to transparent and responsive local governance across the region."
+        ],
+        "category": "Politics",
+        "img_url": "https://images.pexels.com/photos/35270836/pexels-photo-35270836.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
+        "headline": "Panaji Activists Urge Government to Remove Illegal Casino Advertisements",
+        "paragraphs": [
+            "Concerned activists in Panaji have stepped up pressure on the state government, demanding the immediate removal of illegal casino advertisements across the city. They argue that these unauthorized displays violate local regulations and create a negative visual impact in public spaces.",
+            "The campaign highlights the growing civic activism in the capital, with residents calling for stricter enforcement of outdoor advertising laws. Authorities are now expected to review the complaints and take necessary action against non-compliant displays."
+        ],
+        "category": "Civic",
+        "img_url": "https://images.pexels.com/photos/11438923/pexels-photo-11438923.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "timestamp": "2026-08-20T15:50:50.452679"
+    },
+    {
         "headline": "Goa Tourism Teams Up with Ironman to Promote Sports Tourism",
         "paragraphs": [
             "Goa's tourism department has partnered with the organizers of the famous Ironman race to bring exciting athletic events to the state. This initiative aims to highlight Goa as a top destination for sports lovers alongside its famous beaches.",

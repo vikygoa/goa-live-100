@@ -1,6 +1,7 @@
 import os
 import json
 import time
+import re
 import requests
 import feedparser
 from datetime import datetime, timedelta
@@ -20,7 +21,7 @@ client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 FEEDS = [
     "https://news.google.com/rss/search?q=Goa+news&hl=en-IN&gl=IN&ceid=IN:en",
-    "https://news.google.com/rss/search?q=Goa+local+news+OR+Panaji+OR+Margao&hl=en-IN&gl=IN&ceid=IN:en",
+    "https://news.google.com/rss/search?q=Goa+local+news+OR+Panaji+OR+Margao+OR+Mapusa&hl=en-IN&gl=IN&ceid=IN:en",
     "https://news.google.com/rss/search?q=Goa+sports+OR+Goa+football&hl=en-IN&gl=IN&ceid=IN:en",
     "https://digitalgoa.com/feed/"
 ]
@@ -38,10 +39,13 @@ def manage_retention_and_state():
             with open(STATE_FILE, "r", encoding="utf-8") as f:
                 historical_news = json.load(f)
                 for article in historical_news:
-                    article_date = datetime.fromisoformat(article['timestamp'])
-                    if article_date > threshold_date:
+                    try:
+                        article_date = datetime.fromisoformat(article.get('timestamp', ''))
+                        if article_date > threshold_date:
+                            recent_news.append(article)
+                            seen_titles.add(article.get('headline', '').lower())
+                    except Exception:
                         recent_news.append(article)
-                        seen_titles.add(article['headline'].lower())
                 print(f"Loaded {len(historical_news)} past items. Keeping {len(recent_news)} within 15 days.")
         except Exception as e:
             print(f"Could not load state, creating fresh: {e}")
@@ -56,11 +60,11 @@ def get_pexels_image(keyword):
         return FALLBACK_GOA_IMG
 
     headers = {"Authorization": PEXELS_API_KEY}
-    query_param = f"{keyword} goa"
-    url = f"https://api.pexels.com/v1/search?query={query_param}&per_page=1&orientation=landscape"
+    clean_kw = re.sub(r'[^a-zA-Z0-9 ]', '', keyword).strip()
+    url = f"https://api.pexels.com/v1/search?query={clean_kw}&per_page=1&orientation=landscape"
     
     try:
-        res = requests.get(url, headers=headers, timeout=8).json()
+        res = requests.get(url, headers=headers, timeout=6).json()
         if res.get("photos") and len(res["photos"]) > 0:
             return res["photos"][0]["src"]["medium"]
     except Exception as e:
@@ -80,22 +84,25 @@ raw_articles_to_process = []
 raw_feed_seen = set()
 
 for url in FEEDS:
-    feed = feedparser.parse(url)
-    for entry in feed.entries:
-        title = entry.get("title", "").strip()
-        if title and title.lower() not in raw_feed_seen and title.lower() not in seen_titles:
-            raw_feed_seen.add(title.lower())
-            raw_articles_to_process.append({
-                "title": title,
-                "summary": entry.get("summary", "")
-            })
+    try:
+        feed = feedparser.parse(url)
+        for entry in feed.entries:
+            title = entry.get("title", "").strip()
+            if title and title.lower() not in raw_feed_seen and title.lower() not in seen_titles:
+                raw_feed_seen.add(title.lower())
+                raw_articles_to_process.append({
+                    "title": title,
+                    "summary": entry.get("summary", "")
+                })
+    except Exception as e:
+        print(f"Error parsing feed {url}: {e}")
 
 raw_articles_to_process = raw_articles_to_process[:NEWS_LIMIT_PER_RUN]
-print(f"Collected {len(raw_articles_to_process)} new items from feeds.")
+print(f"Collected {len(raw_articles_to_process)} unique new items from RSS.")
 
-# Batch AI summarization
+# Batch AI processing
 if raw_articles_to_process:
-    batch_size = 25
+    batch_size = 20
     gemini_output_all = []
 
     for b in range(0, len(raw_articles_to_process), batch_size):
@@ -104,38 +111,56 @@ if raw_articles_to_process:
         combined_prompt_text = "\n\n".join(news_input_text)
 
         prompt = f"""
-        You are a journalist rewriting local Goa news into structured paragraph format.
+        You are a Goan journalist rewriting raw news into clean, readable news cards.
         For each story:
-        1. Write a clear, bold headline.
-        2. Write 2 readable paragraphs explaining the story in simple English.
-        3. Categorize into strictly one: [Tourism, Sports, Politics, Weather, Crime, Civic, Business, General].
-        4. Provide one single search keyword for an image (e.g. 'football', 'beach', 'police', 'traffic', 'government').
+        1. "headline": Crisp and bold headline.
+        2. "paragraphs": An array of 2 descriptive, readable paragraphs.
+        3. "category": Strictly choose one: Tourism, Sports, Politics, Weather, Crime, Civic, Business, General.
+        4. "img_keyword": Single English word for image search (e.g. football, beach, highway, police, politics, rain).
 
-        Output strictly as a valid JSON array of objects with keys: "category", "headline", "paragraphs" (array of strings), "img_keyword".
+        Respond with ONLY a raw JSON array of objects. Do not include markdown ticks.
 
         News items:
         {combined_prompt_text}
         """
 
-        gemini_model_candidates = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-1.5-flash"]
+        gemini_model_candidates = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.5-flash-lite"]
+        batch_success = False
+
         for model_variant in gemini_model_candidates:
             try:
                 print(f"Processing batch {b//batch_size+1} with {model_variant}...")
                 response = client.models.generate_content(
                     model=model_variant,
-                    contents=prompt,
-                    config={"response_mime_type": "application/json"}
+                    contents=prompt
                 )
-                batch_data = json.loads(response.text)
+                text_response = response.text.strip()
+                # Clean any markdown json tags if present
+                text_response = re.sub(r"^```json\s*", "", text_response)
+                text_response = re.sub(r"^```\s*", "", text_response)
+                text_response = re.sub(r"\s*```$", "", text_response)
+                
+                batch_data = json.loads(text_response)
                 gemini_output_all.extend(batch_data)
+                batch_success = True
                 break
             except Exception as e:
-                print(f"Model {model_variant} attempt failed: {e}")
+                print(f"Model {model_variant} attempt error: {e}")
                 time.sleep(2)
+
+        # Fallback if Gemini fails on this batch: generate standard readable summaries
+        if not batch_success:
+            print(f"Using fallback format for batch {b//batch_size+1}")
+            for item in batch:
+                gemini_output_all.append({
+                    "headline": item['title'],
+                    "paragraphs": [item.get('summary', item['title']), "Follow Goa Live for ongoing local updates regarding this development."],
+                    "category": "General",
+                    "img_keyword": "Goa"
+                })
 
     current_timestamp_iso = datetime.utcnow().isoformat()
     for idx, item in enumerate(gemini_output_all):
-        time.sleep(0.08)
         img_keyword = item.get("img_keyword", item.get("category", "Goa"))
         pexel_img_url = get_pexels_image(img_keyword)
         
@@ -152,12 +177,12 @@ if raw_articles_to_process:
             seen_titles.add(full_article['headline'].lower())
 
 final_news_aggregate = new_news_to_display + historical_feed
-final_news_aggregate.sort(key=lambda x: x['timestamp'], reverse=True)
+final_news_aggregate.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
 
 with open(STATE_FILE, "w", encoding="utf-8") as f:
     json.dump(final_news_aggregate, f, indent=4)
 
-print(f"Total articles in active feed: {len(final_news_aggregate)}")
+print(f"Total articles ready for portal: {len(final_news_aggregate)}")
 
 # ==========================================
 # 4. BUILD CLEAN MAGAZINE HTML
@@ -195,7 +220,7 @@ html_template = f"""<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GOA LIVE – 100 Daily Goa News</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }}
         body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f1f5f9; color: #0f172a; padding-bottom: 70px; }}
@@ -242,7 +267,7 @@ html_template = f"""<!DOCTYPE html>
     
     <footer>
         <p><strong>GOA LIVE</strong> &copy; 2026 – 15-Day Auto-Rotating Digest</p>
-        <p style="margin-top: 4px;">Powered by Gemini AI &middot; Photos via <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer">Pexels</a></p>
+        <p style="margin-top: 4px;">Powered by Gemini AI &middot; Photos via <a href="[https://www.pexels.com](https://www.pexels.com)" target="_blank" rel="noopener noreferrer">Pexels</a></p>
     </footer>
     
     <script>
@@ -265,4 +290,4 @@ html_template = f"""<!DOCTYPE html>
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(html_template)
 
-print("Generated clean index.html successfully!")
+print("Generated index.html with live stories successfully!")

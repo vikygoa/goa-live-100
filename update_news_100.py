@@ -18,7 +18,7 @@ STATE_FILE = "news_data.json"
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY")
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
-# Pre-verified official entity visual mapping for Goa & India
+# Direct verified images for key leaders, parties, and institutions
 VERIFIED_ENTITY_MAP = {
     # Goa Institutions
     "high court": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Bombay_High_Court.jpg/640px-Bombay_High_Court.jpg",
@@ -40,10 +40,10 @@ VERIFIED_ENTITY_MAP = {
     "modi": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/PM_Modi_2023.jpg/640px-PM_Modi_2023.jpg",
     "pramod sawant": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Dr._Pramod_Sawant.jpg/640px-Dr._Pramod_Sawant.jpg",
     "rahul gandhi": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Rahul_Gandhi_2023.jpg/640px-Rahul_Gandhi_2023.jpg",
-    "amit shah": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Amit_Shah_in_2024.jpg/640px-Amit_Shah_in_2024.jpg"
+    "amit shah": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Amit_Shah_in_2024.jpg/640px-Amit_Shah_in_2024.jpg",
+    "fc goa": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/FC_Goa_logo.svg/500px-FC_Goa_logo.svg.png"
 }
 
-# Diverse balanced feeds across all categories
 FEEDS = [
     "https://news.google.com/rss/search?q=Goa+politics+OR+Pramod+Sawant+OR+Goa+BJP+OR+Goa+Congress+OR+Goa+Assembly&hl=en-IN&gl=IN&ceid=IN:en",
     "https://news.google.com/rss/search?q=Goa+Panaji+OR+Margao+OR+Mapusa+OR+Ponda+OR+Vasco+civic&hl=en-IN&gl=IN&ceid=IN:en",
@@ -87,12 +87,12 @@ def manage_retention_and_state():
                     except Exception:
                         recent_news.append(article)
         except Exception as e:
-            print(f"Could not load state, creating fresh: {e}")
+            print(f"Could not load state: {e}")
 
     return recent_news, seen_headlines, used_images
 
 # ==========================================
-# 2. IMAGE MATCHER WITH NO DUPLICATES
+# 2. IMAGE MATCHER WITH ZERO DUPLICATION
 # ==========================================
 def get_entity_image(search_query, category, used_images):
     if not search_query or search_query.strip().lower() in ["none", ""]:
@@ -100,13 +100,14 @@ def get_entity_image(search_query, category, used_images):
 
     query_lower = search_query.strip().lower()
 
-    # 1. Check exact verified dictionary for leaders, logos, courts
+    # 1. Exact verified leader, party, or institutional match
     for key, mapped_url in VERIFIED_ENTITY_MAP.items():
         if key in query_lower:
             return mapped_url
 
-    # 2. Search Wikimedia Commons for real leaders/landmarks
+    # 2. Search Wikimedia Commons with User-Agent header
     try:
+        headers = {"User-Agent": "GoaLiveNewsBot/1.0 (contact@tvgoa.online)"}
         wiki_url = "https://commons.wikimedia.org/w/api.php"
         params = {
             "action": "query",
@@ -118,7 +119,7 @@ def get_entity_image(search_query, category, used_images):
             "piprop": "thumbnail",
             "pithumbsize": 640
         }
-        res = requests.get(wiki_url, params=params, timeout=5).json()
+        res = requests.get(wiki_url, headers=headers, params=params, timeout=5).json()
         pages = res.get("query", {}).get("pages", {})
         for _, p_data in pages.items():
             thumb = p_data.get("thumbnail", {}).get("source")
@@ -128,7 +129,7 @@ def get_entity_image(search_query, category, used_images):
     except Exception:
         pass
 
-    # 3. Fallback to Pexels only for non-political generic topics
+    # 3. Pexels fallback for generic non-political topics
     if PEXELS_API_KEY and category not in ["Politics"]:
         try:
             headers = {"Authorization": PEXELS_API_KEY}
@@ -143,13 +144,12 @@ def get_entity_image(search_query, category, used_images):
         except Exception:
             pass
 
-    # If no verified or unique match is found, return None (NO DUPLICATES)
     return None
 
 # ==========================================
 # 3. RSS COLLECTION & BALANCING
 # ==========================================
-print("--- STARTING GOA LIVE 100 BALANCED UPDATER ---")
+print("--- STARTING GOA LIVE 100 UPDATER ---")
 historical_feed, seen_headlines, used_images = manage_retention_and_state()
 
 raw_items = []
@@ -173,10 +173,10 @@ for url in FEEDS:
         print(f"Feed error {url}: {e}")
 
 raw_items = raw_items[:NEWS_LIMIT_PER_RUN]
-print(f"Collected {len(raw_items)} items for AI processing.")
+print(f"Processing {len(raw_items)} stories...")
 
 # ==========================================
-# 4. GEMINI AI DEDUPLICATION & REWRITING
+# 4. GEMINI AI SUMMARIZATION
 # ==========================================
 new_articles_list = []
 
@@ -188,22 +188,22 @@ if raw_items:
         combined_text = "\n\n".join(news_input)
 
         prompt = f"""
-        You are an editor for a local Goa portal rewriting news for kids and common citizens in simple English.
+        You are an editor for a local Goa portal rewriting news for readers of all ages in simple English.
         
         Rules:
         1. DEDUPLICATE: If stories repeat the same event, output only ONE combined story.
-        2. NO SOURCES: Do NOT mention external news agencies, reporters, or websites.
-        3. PARAGRAPHS: Provide exactly 2 short, easily readable paragraphs per story.
+        2. NO SOURCES: Do NOT mention external news agencies, channels, or reporters.
+        3. PARAGRAPHS: Provide exactly 2 short, readable paragraphs per story.
         4. CATEGORY: Choose strictly one: [Politics, Civic, Tourism, Sports, Weather, Crime, Business, Agriculture, General].
         5. STRICT IMAGE SEARCH ENTITY ("img_entity"):
            - If a specific leader is mentioned (Pramod Sawant, Narendra Modi, Rahul Gandhi, Amit Shah, Vijai Sardesai), output their name.
-           - If a political party is mentioned, output "BJP" or "Congress" or "AAP" or "MGP".
-           - If High Court is mentioned, output "Bombay High Court".
-           - If Goa Police or general police is mentioned, output "Goa Police".
-           - If Crime/Murder/Theft is mentioned without police branding, output "crime investigation scene" or "justice gavel".
+           - If a party or team is mentioned, output "BJP", "Congress", "AAP", "MGP", or "FC Goa".
+           - If the High Court is mentioned, output "High Court".
+           - If Police is mentioned, output "Goa Police".
+           - If Crime/Murder/Theft is mentioned without police branding, output "crime investigation scene".
            - If Farmer/Agriculture is mentioned, output "Indian agriculture rice field".
-           - If Sports is mentioned, output "football field match" or "cricket stadium".
-           - If no specific image makes sense, output "none".
+           - If Sports is mentioned, output "football match" or "cricket stadium".
+           - If no specific image applies, output "none".
 
         Strictly output a JSON array of objects:
         [
@@ -219,7 +219,7 @@ if raw_items:
         {combined_text}
         """
 
-        gemini_models = ["gemini-3.6-flash", "gemini-3.5-flash-lite"]
+        gemini_models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.5-flash-lite"]
         batch_success = False
 
         for model_name in gemini_models:
@@ -236,20 +236,20 @@ if raw_items:
                     batch_success = True
                     break
             except Exception as e:
-                print(f"Model {model_name} notice: {e}")
+                print(f"Model {model_name} error: {e}")
                 time.sleep(1)
 
         if not batch_success:
             for item in batch:
                 new_articles_list.append({
                     "headline": item['title'],
-                    "paragraphs": [item.get('summary', item['title']), "Follow Goa Live for ongoing local reports."],
+                    "paragraphs": [item.get('summary', item['title']), "Follow Goa Live for ongoing local updates."],
                     "category": "General",
                     "img_entity": "none"
                 })
 
 # ==========================================
-# 5. ASSEMBLE (NO DUPLICATE PHOTOS)
+# 5. ASSEMBLE
 # ==========================================
 current_timestamp_iso = datetime.utcnow().isoformat()
 final_new_processed = []
@@ -283,7 +283,7 @@ with open(STATE_FILE, "w", encoding="utf-8") as f:
 print(f"Saved total {len(final_news_aggregate)} active stories.")
 
 # ==========================================
-# 6. HTML WITH PAGINATION (30 PER PAGE)
+# 6. HTML GENERATION (30 PER PAGE)
 # ==========================================
 filter_categories = ["ALL", "POLITICS", "CIVIC", "TOURISM", "SPORTS", "WEATHER", "CRIME", "AGRICULTURE", "BUSINESS"]
 
@@ -303,7 +303,7 @@ for item in final_news_aggregate:
     if img_url:
         media_block = f"""
             <div class="article-media">
-                <img src="{img_url}" alt="{cat}" loading="lazy">
+                <img src="{img_url}" alt="{cat}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none'">
                 <span class="category-pill">{cat}</span>
             </div>
         """
@@ -329,6 +329,7 @@ html_template = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="referrer" content="no-referrer">
     <title>GOA LIVE – 100 Daily Goa News</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -385,7 +386,7 @@ html_template = f"""<!DOCTYPE html>
         <p><strong>GOA LIVE</strong> &copy; 2026 – 15-Day Rotating Digest</p>
         <p style="margin-top: 4px;">Powered by Gemini AI &middot; Verified Entity & CC Visuals</p>
     </footer>
-    
+
     <script>
         let currentCount = 0;
         const pageSize = 30;
@@ -422,7 +423,6 @@ html_template = f"""<!DOCTYPE html>
             renderArticles();
         }}
 
-        // Initial Load
         currentCount = pageSize;
         renderArticles();
     </script>
@@ -433,4 +433,4 @@ html_template = f"""<!DOCTYPE html>
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(html_template)
 
-print("Generated clean, paginated Goa news portal successfully!")
+print("Generated clean Goa news portal successfully!")
